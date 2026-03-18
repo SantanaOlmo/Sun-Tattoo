@@ -22,6 +22,7 @@ const SVG_show = ({ selectedParts = [], onPartClick, ...props }) => {
           stroke-width: 0.5px;
           transition: fill 0.2s ease, stroke 0.2s ease;
           cursor: pointer;
+          touch-action: pan-y;
         }
         .cls-1:hover { 
           fill: #0084ff !important; 
@@ -38,7 +39,8 @@ const SVG_show = ({ selectedParts = [], onPartClick, ...props }) => {
         style={{ 
             height: '100%',         // Ocupa todo el alto del padre (.body-visualizer)
             width: 'auto',           // Mantiene la proporción
-            display: 'block'
+            display: 'block',
+            touchAction: 'pan-y'    // Permite scroll vertical en móviles
           }}
         // DELEGACIÓN DE EVENTOS: Un solo click para todos los paths
         onClick={(e) => {
