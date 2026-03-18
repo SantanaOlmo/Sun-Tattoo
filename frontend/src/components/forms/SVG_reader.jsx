@@ -11,9 +11,19 @@ const SVG_reader = ({ onPartsChange }) => {
   }, []);
 
   const getPartId = (e) => {
-    const element = e.target.closest('path') || e.target.closest('g');
-    const id = element?.id;
-    return (id && id !== "Capa_1") ? id : null;
+    const target = e.target.closest('[id]');
+    if (!target || target.id === 'Capa_1') return null;
+
+    let id = target.id;
+
+    if (target.tagName.toLowerCase() === 'path') {
+      const parentGroup = target.closest('g[id]');
+      if (parentGroup && parentGroup.id !== 'Capa_1') {
+        id = parentGroup.id;
+      }
+    }
+
+    return id;
   };
 
   const handleMouseEnter = (e) => {
