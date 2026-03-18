@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import ButtonPrimary from '../../components/layout/common/ButtonPrimary';
-import NavigationArrows from '../../components/layout/common/NavigationArrows';
+import ButtonPrimary from '../../components/common/ButtonPrimary';
+import NavigationArrows from '../../components/common/NavigationArrows';
 
 const STYLES_DATA = [
   { id: 1, title: "Realismo", img: "https://res.cloudinary.com/dvkwtib0o/image/upload/f_auto,q_auto:eco,w_900/v1773662585/La-pirateria-tattoo01-5_hn02k8.webp" },

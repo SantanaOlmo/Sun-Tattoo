@@ -3,8 +3,7 @@
   border-radius: 35px;
   padding: 35px;
   width: 100%;
-  /* Tamaño compacto y simétrico */
-  max-width: 450px; 
+  max-width: 450px;
   height: 380px;
   display: flex;
   flex-direction: column;
@@ -12,21 +11,19 @@
   text-align: center;
   box-sizing: border-box;
   margin: 0 auto;
-  /* Sombra suave para que destaque sobre el negro */
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
 .review-name {
-  font-size: 1.2rem;
-  font-weight: 700;
   color: #000;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
+  letter-spacing: 3px;
 }
 
+/* Quitamos font-size de stars — lo gestiona Tailwind */
 .review-stars {
   color: #ffcc00;
-  font-size: 3rem;
-  margin-bottom: 25px;
+  margin-bottom: 0;
 }
 
 .review-content {
@@ -34,12 +31,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: left;
 }
 
 .review-text {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #333;
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;

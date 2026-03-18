@@ -1,7 +1,7 @@
 .reviews-section-wrapper {
   width: 100%;
-  background-color: #09090b; /* zinc-950 */
-  overflow: hidden;
+  background-color: transparent; /* zinc-950 */
+  overflow: visible;
 }
 
 .single-review-swiper {
@@ -49,6 +49,9 @@
   background: #0084ff !important;
   width: 20px;
   border-radius: 4px;
+}
+h2{
+  letter-spacing: 2px;
 }
 
 /* --- RESPONSIVE --- */

@@ -2,16 +2,17 @@ import React, { Suspense, lazy } from 'react';
 import Header from '../../components/layout/Header';
 import Footer from '../../components/layout/Footer';
 import Hero from './Hero';
-import Carousel from '../../components/layout/common/Carousel';
-import Card from '../../components/layout/common/Card';
-import ArtistCard from '../../components/layout/common/ArtistCard';
+import Carousel from '../../components/common/Carousel';
+import Card from '../../components/common/Card';
+import ArtistCard from '../../components/common/ArtistCard';
 import ProductsSection from './ProductSection';
 import './styles/Home.css';
 import budgetIcon from '../../assets/icons/budget.svg'; 
+import News from '../../components/common/News';
 
 
 // --- COMPONENTES CON LAZY LOADING (Rompen la cadena crítica de carga) ---
-const Sidebar = lazy(() => import('../../components/layout/common/Sidebar'));
+const Sidebar = lazy(() => import('../../components/common/Sidebar'));
 const ReviewsSection = lazy(() => import('./ReviewsSection'));
 const CarouselTattooStyles = lazy(() => import('./CarouselTattooStyles'));
 const BudgetForm = lazy(() => import('../../components/forms/BudgetForm'));
@@ -109,6 +110,12 @@ export default function Home() {
           <h2 className="sidebar-header-title">Pide presupuesto</h2>
         </div>
         <BudgetForm />
+      </Suspense>
+
+      <Suspense>
+        <section style={{ width: '100vw', marginTop: '4rem', marginBottom: '4rem' }}>
+          <News />
+        </section>
       </Suspense>
 
       {/* 9. Reseñas (Lazy) */}

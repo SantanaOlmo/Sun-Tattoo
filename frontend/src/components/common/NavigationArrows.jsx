@@ -1,6 +1,6 @@
 import React from 'react';
-import arrowLeft from '../../../assets/icons/chevron-chevron-left-left-svgrepo-com.svg';
-import arrowRight from '../../../assets/icons/chevron-chevron-right-right-svgrepo-com.svg';
+import arrowLeft from '../../assets/icons/chevron-chevron-left-left-svgrepo-com.svg';
+import arrowRight from '../../assets/icons/chevron-chevron-right-right-svgrepo-com.svg';
 
 export default function NavigationArrows({ prevClass, nextClass, className = "" }) {
   const btnStyle = `

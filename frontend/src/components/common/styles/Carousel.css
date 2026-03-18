@@ -1,7 +1,7 @@
 /* CAROUSEL CSS MEJORADO */
 .carousel-wrapper {
   padding: 60px 0;
-  background: #000; /* Fondo negro sólido */
+  background: transparent; /* Fondo negro sólido */
   width: 100%;
   overflow: hidden; /* Evita que las cards se salgan del layout */
 }
@@ -70,15 +70,6 @@
   pointer-events: none; /* Permite clicar las flechas que están debajo */
 }
 
-.carousel-main::before {
-  left: 0;
-  background: linear-gradient(to right, #000 20%, transparent);
-}
-
-.carousel-main::after {
-  right: 0;
-  background: linear-gradient(to left, #000 20%, transparent);
-}
 
 /* Actualiza estas líneas en Carousel.css */
 .carousel-main .nav-custom-prev {

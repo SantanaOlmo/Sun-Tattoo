@@ -1,6 +1,6 @@
 import React, { useState, Suspense, lazy } from 'react';
 import './styles/BudgetForm.css';
-import ButtonPrimary from '../layout/common/ButtonPrimary';
+import ButtonPrimary from '../common/ButtonPrimary';
 
 // Mantenemos el Lazy Load para romper la cadena crítica de 62KB
 const SVG_reader = lazy(() => import('./SVG_reader'));

@@ -1,9 +1,9 @@
 import React, { useState, Suspense, lazy, useEffect } from 'react';
 import './styles/Sidebar.css';
-import budgetIcon from '../../../assets/icons/budget.svg'; 
+import budgetIcon from '../../assets/icons/budget.svg'; 
 
 // 1. CARGA PEREZOSA: El formulario solo se descarga si el usuario abre el Sidebar
-const BudgetForm = lazy(() => import('../../forms/BudgetForm'));
+const BudgetForm = lazy(() => import('../forms/BudgetForm'));
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
