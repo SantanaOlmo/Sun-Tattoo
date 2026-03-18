@@ -1,10 +1,13 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import SVG_show from './SVG_show'; 
 
 const SVG_reader = ({ onPartsChange }) => {
   const [hoveredPart, setHoveredPart] = useState("");
   const [selectedParts, setSelectedParts] = useState([]);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const pointerMoved = useRef(false);
+  const pointerStart = useRef({ x: 0, y: 0 });
 
   const handleMouseMove = useCallback((e) => {
     setMousePos({ x: e.clientX + 15, y: e.clientY + 15 });
@@ -33,7 +36,23 @@ const SVG_reader = ({ onPartsChange }) => {
 
   const handleMouseLeave = () => setHoveredPart("");
 
+  const handlePointerDown = (e) => {
+    pointerMoved.current = false;
+    pointerStart.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handlePointerMove = (e) => {
+    const dx = Math.abs(e.clientX - pointerStart.current.x);
+    const dy = Math.abs(e.clientY - pointerStart.current.y);
+    if (dx > 5 || dy > 5) {
+      pointerMoved.current = true;
+    }
+    handleMouseMove(e);
+  };
+
   const handleInternalClick = (e) => {
+    if (pointerMoved.current) return;
+
     const id = getPartId(e);
     if (!id) return;
 
@@ -52,10 +71,11 @@ const SVG_reader = ({ onPartsChange }) => {
   return (
     <div 
       className="relative w-full h-full cursor-crosshair"
-      onMouseMove={handleMouseMove}
       onMouseOver={handleMouseEnter}
       onMouseOut={handleMouseLeave}
-      onClick={handleInternalClick}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handleInternalClick}
     >
       {hoveredPart && (
         <div style={{
