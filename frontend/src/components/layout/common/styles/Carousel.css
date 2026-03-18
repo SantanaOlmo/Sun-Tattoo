@@ -1,0 +1,106 @@
+/* CAROUSEL CSS MEJORADO */
+.carousel-wrapper {
+  padding: 60px 0;
+  background: #000; /* Fondo negro sólido */
+  width: 100%;
+  overflow: hidden; /* Evita que las cards se salgan del layout */
+}
+
+.carousel-section-title {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.carousel-main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  /* El secreto: creamos un margen interno para las flechas */
+  padding: 0 80px; 
+  box-sizing: border-box;
+}
+
+.carousel-container {
+  display: flex;
+  gap: 30px; /* Más espacio entre cards */
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0; /* Espacio para sombras y hovers de las cards */
+  scrollbar-width: none;
+  align-items: center;
+  width: 100%;
+  
+  /* Ajuste de scroll: para que la primera card se alinee con el borde del padding */
+  scroll-padding: 0 80px; 
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ESTILOS ESPECÍFICOS PARA LAS FLECHAS DENTRO DE ESTE CARRUSEL */
+/* Usamos las clases de NavigationArrows pero las fijamos a los extremos del padding */
+
+.carousel-main .swiper-button-prev,
+.carousel-main .nav-arrow-prev {
+  left: 15px !important;
+  position: absolute !important;
+}
+
+.carousel-main .swiper-button-next,
+.carousel-main .nav-arrow-next {
+  right: 15px !important;
+  position: absolute !important;
+}
+
+/* Si quieres un degradado sutil para que las cards no desaparezcan de golpe: */
+.carousel-main::before,
+.carousel-main::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 5;
+  pointer-events: none; /* Permite clicar las flechas que están debajo */
+}
+
+.carousel-main::before {
+  left: 0;
+  background: linear-gradient(to right, #000 20%, transparent);
+}
+
+.carousel-main::after {
+  right: 0;
+  background: linear-gradient(to left, #000 20%, transparent);
+}
+
+/* Actualiza estas líneas en Carousel.css */
+.carousel-main .nav-custom-prev {
+  left: 15px !important;
+  position: absolute !important;
+}
+
+.carousel-main .nav-custom-next {
+  right: 15px !important;
+  position: absolute !important;
+}
+
+/* Y por seguridad, este "kill switch" para las flechas de Swiper originales */
+.swiper-button-prev, .swiper-button-next {
+    display: none !important;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

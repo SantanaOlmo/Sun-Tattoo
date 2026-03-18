@@ -1,0 +1,122 @@
+/* --- BOTÓN DISPARADOR (Tu estilo original) --- */
+.sidebar-trigger {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1001;
+  background-color: #000000;
+  border: none;
+  padding: 15px;
+  border-radius: 20px 0 0 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* El botón se oculta al abrir para no estorbar el formulario */
+.sidebar-trigger.active {
+  right: 20px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.trigger-icon img {
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) invert(1);
+}
+
+/* --- PANEL SIDEBAR (100% ANCHO) --- */
+.sidebar-panel {
+  position: fixed;
+  top: 0;
+  width: 100%;       /* Ocupa todo el ancho como pedías */
+  height: 100vh;
+  right: -100%;      /* Escondido totalmente a la derecha */
+  background-color: #000000;
+  color: white;
+  z-index: 1002;
+  transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;   /* Importante: el scroll lo manejará el formulario interno */
+}
+
+.sidebar-panel.open {
+  right: 0;
+}
+
+/* --- HEADER UNIFICADO (Título + Cruz) --- */
+.sidebar-header {
+  display: flex;
+  justify-content: space-between; /* Título izquierda, Cruz derecha */
+  align-items: center;
+  padding: 20px 60px; /* Un poco más de aire en los laterales */
+  border-bottom: 1px solid #1a1a1a;
+  min-height: 90px;
+  box-sizing: border-box;
+}
+
+.sidebar-header-left {
+  display: flex;
+  align-items: flex-end; /* Efecto "suelo" para el texto e icono */
+  gap: 15px;
+}
+
+.header-icon {
+  width: 35px;
+  height: 35px;
+  filter: brightness(0) invert(1);
+}
+
+.sidebar-header-title {
+  color: #ffffff;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+  padding: 0;
+}
+
+.close-btn:hover {
+  color: #ff0000; /* Color de acento al cerrar */
+  transform: rotate(90deg);
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.sidebar-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1400px; /* Permitimos que sea ancho para el diseño de 2 columnas */
+  margin: 0 auto;
+  padding: 20px 60px;
+  box-sizing: border-box;
+  overflow: hidden; /* Mantenemos el scroll dentro del BudgetForm */
+}
+
+/* --- OVERLAY CON BLUR --- */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85); /* Oscuro profundo */
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+}

@@ -1,0 +1,79 @@
+.wrapper {
+  display: inline-flex;
+  flex-direction: row; /* Garantiza horizontal */
+  list-style: none;
+  gap: 15px;
+  padding: 0;
+  margin: 0;
+  justify-content: flex-start;
+}
+
+.wrapper .icon {
+  position: relative;
+  background: #000;
+  border-radius: 50%;
+  margin: 0 10px; /* Margen lateral fijo */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  /* Bloqueamos cualquier intento de expansión lateral */
+  flex-shrink: 0; 
+  box-sizing: border-box;
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  /* Centrado absoluto que NO ocupa espacio en el flujo */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap; /* Evita que el texto rompa en dos líneas */
+  font-size: 14px;
+  background: #fff;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 100;
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: inherit;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -50px;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* SALTO VERTICAL PURO */
+.wrapper .icon:hover {
+  transform: translateY(-8px); /* Eliminamos el scale aquí para probar estabilidad total */
+}
+
+/* Colores */
+.facebook:hover, .facebook:hover .tooltip { background: #1877f2; }
+.instagram:hover, .instagram:hover .tooltip { background: #e4405f; }
+.youtube:hover, .youtube:hover .tooltip { background: #cd201f; }
+.whatsapp:hover, .whatsapp:hover .tooltip { background: #25d366; }
+
+.social-svg {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  display: block; /* Evita espacios extra de tipografía */
+}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Si tienes sitemap, añádelo aquí (opcional)
+# Sitemap: https://tusitio.com/sitemap.xml
