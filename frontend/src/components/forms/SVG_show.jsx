@@ -23,11 +23,17 @@ const SVG_show = ({ selectedParts = [], onPartClick, ...props }) => {
           transition: fill 0.2s ease, stroke 0.2s ease;
           cursor: pointer;
           touch-action: pan-y;
+          pointer-events: auto;
         }
         .cls-1:hover { 
           fill: #0084ff !important; 
           opacity: 0.8;
         }
+          @media (hover: hover) {
+            .cls-1:hover { 
+              fill: #0084ff !important; 
+              opacity: 0.8;
+            }
         ${selectedStyles}
       `}</style>
       
@@ -43,13 +49,17 @@ const SVG_show = ({ selectedParts = [], onPartClick, ...props }) => {
             touchAction: 'pan-y'    // Permite scroll vertical en móviles
           }}
         // DELEGACIÓN DE EVENTOS: Un solo click para todos los paths
-        onClick={(e) => {
-          const targetId = e.target.id;
-          // Si clicamos un path con ID, avisamos al padre
-          if (targetId && onPartClick) {
-            onPartClick(targetId);
-          }
-        }}
+        onPointerDown={(e) => {
+            const targetId = e.target.id;
+            if (targetId && onPartClick) {
+              // Evitamos que el navegador haga cosas raras con el foco
+              if (e.pointerType === 'touch') {
+                // Opcional: e.preventDefault(); 
+                // Pero cuidado, si pones preventDefault podrías romper el scroll
+              }
+              onPartClick(targetId);
+            }
+          }}
         {...props}
       >
         {/* PEGA AQUÍ TUS PATHS (TODOS ELLOS) */}
