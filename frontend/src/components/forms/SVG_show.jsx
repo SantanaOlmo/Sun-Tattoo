@@ -34,7 +34,12 @@ const SVG_show = ({ selectedParts = [], onPartClick, ...props }) => {
         id="Capa_1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 447 810.48"
-        className="w-auto h-full max-h-[70vh] block mx-auto touch-none"
+        className="w-auto h-full max-h-[70vh] block mx-auto touch-pan-y"
+        style={{ 
+            height: '100%',         // Ocupa todo el alto del padre (.body-visualizer)
+            width: 'auto',           // Mantiene la proporción
+            display: 'block'
+          }}
         // DELEGACIÓN DE EVENTOS: Un solo click para todos los paths
         onClick={(e) => {
           const targetId = e.target.id;

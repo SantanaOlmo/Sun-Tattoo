@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, Suspense, lazy, useEffect } from 'react';
 import './styles/Sidebar.css';
 import budgetIcon from '../../../assets/icons/budget.svg'; 
 
@@ -8,32 +8,54 @@ const BudgetForm = lazy(() => import('../../forms/BudgetForm'));
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-    // 2. EVITAR REFLOW: En lugar de useEffect, usamos clases CSS en el body si es necesario,
-    // pero lo ideal es manejar el overflow con una clase fija en el CSS.
-    if (!isOpen) {
+  // Función para controlar el scroll del body/html
+  const handleScrollLock = (shouldLock) => {
+    if (shouldLock) {
       document.documentElement.classList.add('no-scroll');
     } else {
       document.documentElement.classList.remove('no-scroll');
     }
   };
 
+  const toggleSidebar = () => {
+    const nextState = !isOpen;
+    setIsOpen(nextState);
+    handleScrollLock(nextState);
+  };
+
+  // Limpieza de seguridad al desmontar el componente
+  useEffect(() => {
+    return () => {
+      document.documentElement.classList.remove('no-scroll');
+    };
+  }, []);
+
   return (
     <>
+      {/* Botón Disparador */}
       <button 
         className={`sidebar-trigger ${isOpen ? 'active' : ''}`} 
         onClick={toggleSidebar}
-        aria-label="Abrir formulario de presupuesto"
+        aria-label={isOpen ? "Cerrar presupuesto" : "Abrir presupuesto"}
       >
         <span className="trigger-icon">
            <img src={budgetIcon} alt="Icono Presupuesto" />
         </span>
       </button>
 
-      {isOpen && <div className="sidebar-overlay" onClick={toggleSidebar}></div>}
+      {/* Overlay con Blur */}
+      {isOpen && (
+        <div 
+          className="sidebar-overlay" 
+          onClick={toggleSidebar}
+          aria-hidden="true"
+        ></div>
+      )}
 
+      {/* Panel Lateral */}
       <aside className={`sidebar-panel ${isOpen ? 'open' : ''}`}>
+        
+        {/* Header Fijo */}
         <div className="sidebar-header">
           <div className="sidebar-header-left">
             <img src={budgetIcon} alt="Icono Presupuesto" className="header-icon" />
@@ -42,14 +64,19 @@ export default function Sidebar() {
           <button className="close-btn" onClick={toggleSidebar}>×</button>
         </div>
         
+        {/* Contenedor con Scroll */}
         <div className="sidebar-content">
-          {/* 3. SOLO RENDERIZAR SI ESTÁ ABIERTO: Ahorra muchísima CPU */}
           {isOpen && (
-            <Suspense fallback={<div className="p-10 text-white">Cargando formulario...</div>}>
+            <Suspense fallback={
+              <div className="flex items-center justify-center h-full text-white">
+                <p>Cargando formulario...</p>
+              </div>
+            }>
               <BudgetForm />
             </Suspense>
           )}
         </div>
+
       </aside>
     </>
   );

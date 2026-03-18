@@ -18,11 +18,18 @@ export default function BudgetForm() {
       <div className="budget-content-wrapper" style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
         
         {/* SECCIÓN DEL SVG */}
-        <div className="body-visualizer" style={{ flex: '1', minWidth: '350px', minHeight: '500px' }}>
-          <Suspense fallback={<div style={{ height: '500px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#666' }}>Cargando modelo...</div>}>
-            <SVG_reader onPartsChange={handlePartsChange} />
-          </Suspense>
-        </div>
+        <div 
+            className="body-visualizer" 
+            style={{ 
+              flex: '0.7',           // Menos que 1 hace que ocupe menos espacio
+              minWidth: '280px',     // Bajamos un poco el mínimo
+              borderRadius: '15px'
+            }}
+          >
+            <Suspense fallback={<div style={{ height: '500px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#666' }}>Cargando modelo...</div>}>
+              <SVG_reader onPartsChange={handlePartsChange} />
+            </Suspense>
+          </div>
 
         {/* FORMULARIO DE DATOS */}
         <form className="budget-form" style={{ flex: '1' }} onSubmit={(e) => e.preventDefault()}>

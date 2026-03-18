@@ -7,6 +7,8 @@ import Card from '../../components/layout/common/Card';
 import ArtistCard from '../../components/layout/common/ArtistCard';
 import ProductsSection from './ProductSection';
 import './styles/Home.css';
+import budgetIcon from '../../assets/icons/budget.svg'; 
+
 
 // --- COMPONENTES CON LAZY LOADING (Rompen la cadena crítica de carga) ---
 const Sidebar = lazy(() => import('../../components/layout/common/Sidebar'));
@@ -87,7 +89,7 @@ export default function Home() {
         <Sidebar />
       </Suspense>
 
-      {/* 7. Carrusel de Piercings */}
+      {/* 7. Carrusel de Piercings 
       <Carousel title="Piercing & Jewelry">
         <Card 
           image="/images/piercing1.jpg" 
@@ -99,12 +101,13 @@ export default function Home() {
           title="Nostril" 
           subtitle="Oro 14K" 
         />
-      </Carousel>
+      </Carousel>*/}
 
-      {/* 8. FORMULARIO DE PRESUPUESTO (Lazy): 
-          Aquí es donde rompemos los 622ms de latencia, ya que los SVGs pesados
-          no se cargan hasta que la página principal ya está lista. */}
       <Suspense fallback={<div className="h-96 flex items-center justify-center text-gray-500">Cargando formulario de presupuesto...</div>}>
+        <div className="sidebar-header-left">
+          <img src={budgetIcon} alt="Icono Presupuesto" className="header-icon" />
+          <h2 className="sidebar-header-title">Pide presupuesto</h2>
+        </div>
         <BudgetForm />
       </Suspense>
 

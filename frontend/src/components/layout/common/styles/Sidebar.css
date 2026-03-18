@@ -28,6 +28,17 @@
   height: 30px;
   filter: brightness(0) invert(1);
 }
+/* --- HOVER DEL BOTÓN DISPARADOR --- */
+.sidebar-trigger:hover {
+  background-color: #0084ff; /* El azul que has pedido */
+  padding-right: 25px;       /* Un pequeño extra de movimiento hacia la izquierda (opcional) */
+}
+
+/* Efecto opcional: Que el icono crezca un poco al pasar el ratón */
+.sidebar-trigger:hover .trigger-icon img {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
 
 /* --- PANEL SIDEBAR (100% ANCHO) --- */
 .sidebar-panel {
@@ -106,7 +117,22 @@
   margin: 0 auto;
   padding: 20px 60px;
   box-sizing: border-box;
-  overflow: hidden; /* Mantenemos el scroll dentro del BudgetForm */
+  overflow-y: auto;
+  overflow-x: hidden; /* Mantenemos el scroll dentro del BudgetForm */
+  -webkit-overflow-scrolling:touch;
+}
+
+.sidebar-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+  background: #333; /* Un gris oscuro que no destaque mucho sobre el negro */
+  border-radius: 10px;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 /* --- OVERLAY CON BLUR --- */

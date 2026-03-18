@@ -10,12 +10,10 @@
 /* --- WRAPPER DE DOS COLUMNAS --- */
 .budget-content-wrapper {
   display: flex;
-  gap: 50px;
-  width: 100%;
-  /* Bajamos un poco más el descuento para dar margen de seguridad */
-  height: calc(100vh - 180px); 
+  flex-direction: row; 
+  gap: 40px;
+  height: calc(100vh - 150px);
   align-items: stretch;
-  overflow: hidden;
 }
 
 /* --- ÁREA DEL MODELO (FIJA Y AJUSTABLE) --- */
@@ -26,8 +24,6 @@
   justify-content: center;
   align-items: center;
   overflow: hidden; 
-  /* Añadimos un padding vertical fuerte para que respire */
-  padding: 40px 20px; 
   box-sizing: border-box;
 }
 
@@ -148,4 +144,42 @@
   color: #888;
   line-height: 1.4;
   flex: 1;
+}
+
+@media (max-width: 768px) {
+  .budget-content-wrapper {
+    flex-direction: column; /* SVG ARRIBA, FORM ABAJO */
+    height: auto;           /* Que crezca según el contenido */
+    overflow-y: visible;    /* Permitimos scroll normal de página */
+    gap: 20px;
+  }
+
+  .body-visualizer {
+    flex: none;             /* Cancelamos el peso flex */
+    width: 100%;            /* Ocupa todo el ancho del móvil */
+    height: 60vh;           /* Altura específica que pediste */
+    min-height: 400px; 
+    position: relative;     /* Seguridad para que no se vea minúsculo */
+    overflow: visible;
+    touch-action: pan-y;
+  }
+
+  .body-visualizer svg {
+    height: 100% !important; /* Que use el 100% de los 60vh de su padre */
+    max-height: 100%;
+    touch-action: none;
+    pointer-events: auto;
+  }
+
+  .budget-form {
+    flex: none;
+    width: 100%;
+    height: auto;
+    overflow-y: visible;    /* El scroll lo hace la web entera, no solo el form */
+    padding: 0 10px 40px 10px; /* Margen abajo para que no pegue al final */
+  }
+  .budget-form-container {
+    height: auto !important;           /* Permite que el contenedor crezca */
+    overflow: visible !important;    /* Asegura que nada bloquee el scroll */
+  }
 }

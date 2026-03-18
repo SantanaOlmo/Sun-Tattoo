@@ -65,3 +65,77 @@
   margin: 2px 0 0 0;
   font-size: 1.3rem;
 }
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+  .custom-card {
+    width: 180px; /* Aquí controlas qué tan chicas las quieres */
+  }
+  
+  .card-info h4 {
+    font-size: 1.1rem; /* Reducimos un poco el texto para que no rompa el diseño */
+  }
+  
+  .card-info p {
+    font-size: 0.9rem;
+  }
+}
+
+.custom-card:hover {
+  transform: translateY(-8px);
+}
+
+.card-image-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5; 
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #a3a3a3;
+}
+
+.card-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 15%; 
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favorite-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: #555;
+}
+
+.card-info {
+  flex-grow: 1;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left; /* Alineado a la izquierda suele quedar mejor en cards */
+}
+
+.card-info h4 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-h); /* Usamos tu variable de color global */
+}
+
+.card-info p {
+  margin: 2px 0 0 0;
+  font-size: 1.3rem;
+  color: var(--text);
+}

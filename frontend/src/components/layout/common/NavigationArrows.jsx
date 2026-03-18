@@ -10,7 +10,8 @@ export default function NavigationArrows({ prevClass, nextClass, className = "" 
     backdrop-blur-sm select-none absolute !top-1/2 !-translate-y-1/2
   `;
 
-  const iconStyle = "w-5 h-5 object-contain filter brightness-0 invert transition-transform group-hover:scale-110";
+  // 👇 aquí cambias el tamaño del icono
+  const iconStyle = "w-6 h-6 object-contain filter brightness-0 invert transition-transform group-hover:scale-110";
 
   return (
     <>
