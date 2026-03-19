@@ -160,7 +160,7 @@
   }
 
   .body-visualizer svg {
-    touch-action: none;
+    touch-action: pan-y; /* Permite scroll vertical de la página */
     pointer-events: auto;
   }
 

@@ -9,23 +9,11 @@ export default function ReviewCard({ name, text }) {
       
       {/* Profile and Header */}
       <div className="review-header-wrapper">
-        <div className="profile-container">
-          <div className="profile-initials">
-            {name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)}
-          </div>
-        </div>
-        
-        <div className="review-header">
+        <div className="review-header" style={{ marginLeft: 0 }}>
           <div className="name-badge-group">
             <h4 className="review-name text-lg">
               {name}
             </h4>
-            <div className="verified-badge">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-              </svg>
-              <span>Verificada</span>
-            </div>
           </div>
           <div className="review-stars">
             {Array.from({ length: 5 }).map((_, i) => (

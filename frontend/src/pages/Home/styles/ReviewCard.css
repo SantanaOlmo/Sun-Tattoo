@@ -22,45 +22,10 @@
   margin-bottom: 0.5rem;
 }
 
-.profile-container {
-  flex-shrink: 0;
-}
-
-.profile-initials {
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, #eee 0%, #ddd 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #555;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 1px;
-  border: 2px solid #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
 .name-badge-group {
   display: flex;
   flex-direction: column;
   gap: 2px;
-}
-
-.verified-badge {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  background: #f0fdf4;
-  color: #16a34a;
-  padding: 2px 8px;
-  border-radius: 100px;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  width: fit-content;
-  border: 1px solid #dcfce7;
 }
 
 .review-header {

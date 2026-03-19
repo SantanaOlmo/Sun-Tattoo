@@ -34,24 +34,15 @@ export default function Carousel({ children, title, isArtist = false }) {
         <div 
           className={`
             carousel-container 
-            flex overflow-x-auto gap-8 
+            flex overflow-x-auto
             scrollbar-hide 
-            px-10 md:px-20 
             ${isArtist ? 'py-14' : 'py-4'}
-            /* Añadimos will-change para que el navegador use la GPU */
             will-change-scroll
           `}
           ref={scrollRef}
-          style={{ 
-            scrollSnapType: 'x mandatory',
-            WebkitOverflowScrolling: 'touch' 
-          }}
         >
           {Children.map(children, (child) => (
-            <div 
-              className="flex-shrink-0" 
-              style={{ scrollSnapAlign: 'start' }}
-            >
+            <div className="flex-shrink-0">
               {child}
             </div>
           ))}

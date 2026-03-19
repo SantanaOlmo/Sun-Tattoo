@@ -4,7 +4,6 @@
   color: var(--text);
   padding: 80px 20px 20px 20px;
   font-family: 'Inter', Arial, sans-serif;
-  border-top: 1px solid var(--border);
 }
 
 .footer-container {

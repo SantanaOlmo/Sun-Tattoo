@@ -1,17 +1,11 @@
 /* CAROUSEL CSS MEJORADO */
 .carousel-wrapper {
   padding: 0;
-  background: transparent; /* Fondo negro sólido */
+  background: transparent;
   width: 100%;
-  overflow: hidden; /* Evita que las cards se salgan del layout */
-}
-
-.carousel-section-title {
-  color: #fff;
-  text-align: left;
-  text-transform: uppercase;
-  font-weight: 800;
-  letter-spacing: 2px;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .carousel-main {
@@ -19,24 +13,28 @@
   display: flex;
   align-items: center;
   width: 100%;
-  /* El secreto: creamos un margen interno para las flechas */
-  padding: 0 80px; 
+  padding: 0 60px; /* Menos padding para dar más espacio a las cards */
   box-sizing: border-box;
 }
 
 .carousel-container {
   display: flex;
-  gap: 30px; /* Más espacio entre cards */
+  gap: 30px; /* Espaciado fijo y prudente */
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 20px 0; /* Espacio para sombras y hovers de las cards */
+  scroll-snap-type: x mandatory;
+  padding: 20px 0;
   scrollbar-width: none;
-  align-items: center;
+  align-items: stretch;
   width: 100%;
-  
-  /* Ajuste de scroll: para que la primera card se alinee con el borde del padding */
-  scroll-padding: 0 80px; 
 }
+
+.carousel-container > div {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+/* Eliminamos las media queries de ancho calculado */
 
 .carousel-container::-webkit-scrollbar {
   display: none;

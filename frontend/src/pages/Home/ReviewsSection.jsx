@@ -212,7 +212,7 @@ const handleWheel = (e) => {
               border: 'none',
               cursor: 'pointer',
               transition: 'all 0.3s',
-              backgroundColor: i === current ? 'white' : 'rgba(255,255,255,0.3)',
+              backgroundColor: i === current ? 'var(--text-h)' : 'rgba(128, 128, 128, 0.3)',
               width: i === current ? '1rem' : '0.5rem',
               height: '0.5rem',
               padding: 0,

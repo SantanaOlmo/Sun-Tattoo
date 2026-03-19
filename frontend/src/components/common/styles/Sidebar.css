@@ -1,26 +1,25 @@
 /* --- BOTÓN DISPARADOR (Tu estilo original) --- */
 .sidebar-trigger {
   position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1001;
+  right: 30px;
+  bottom: 30px;
+  z-index: 1005; /* Por encima de todo, incluido el sidebar-panel si es necesario */
   background-color: #000000;
   border: none;
-  padding: 15px;
-  border-radius: 20px 0 0 20px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* El botón se oculta al abrir para no estorbar el formulario */
+/* El botón se mantiene visible y puede rotar o cambiar color al abrir */
 .sidebar-trigger.active {
-  right: 20px;
-  opacity: 0;
-  pointer-events: none;
+  background-color: #000000;
+  transform: rotate(45deg); /* Efecto visual de "abierto" o cambio de modo */
 }
 
 .trigger-icon img {
@@ -30,14 +29,12 @@
 }
 /* --- HOVER DEL BOTÓN DISPARADOR --- */
 .sidebar-trigger:hover {
-  background-color: #0084ff; /* El azul que has pedido */
-  padding-right: 25px;       /* Un pequeño extra de movimiento hacia la izquierda (opcional) */
+  background-color: #0084ff;
+  transform: scale(1.1);
 }
 
-/* Efecto opcional: Que el icono crezca un poco al pasar el ratón */
 .sidebar-trigger:hover .trigger-icon img {
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
+  transform: rotate(10deg);
 }
 
 /* --- PANEL SIDEBAR (100% ANCHO) --- */

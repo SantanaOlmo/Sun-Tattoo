@@ -1,5 +1,5 @@
 .custom-card {
-  width: 280px; /* Tu ancho base */
+  width: 280px; /* Ancho fijo para evitar estiramientos */
   aspect-ratio: 4 / 5.5; /* Proporción total de la card (ancho / alto) */
   display: flex;
   flex-direction: column;

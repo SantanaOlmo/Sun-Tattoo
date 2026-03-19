@@ -11,7 +11,7 @@ export default function Hero() {
       {/* STATUS INLINE (FLOTANDO AISLADO) */}
       <div className="hero-status-inline">
         <span className="status-dot-inline"></span>
-        <span className="status-text-inline">Abierto ahora</span>
+        <span className="status-text-inline">Estamos abierto</span>
       </div>
 
       <div className="hero-media bg-black">

@@ -70,25 +70,25 @@ export default function Home() {
       <section className="home-section">
         <SectionTitle title="Nuestros Artistas" />
         <Carousel isArtist={true}>
-        <ArtistCard 
+        <Card 
           image="/images/artistas/Dani.png" 
-          name="Alberto" 
-          specialty="Blackwork & Dotwork" 
+          title="Alberto" 
+          subtitle="Blackwork & Dotwork" 
         />
-        <ArtistCard 
+        <Card 
           image="/images/artistas/Jesus.png" 
-          name="Álvaro" 
-          specialty="Realismo Sombras" 
+          title="Álvaro" 
+          subtitle="Realismo Sombras" 
         />
-        <ArtistCard 
+        <Card 
           image="/images/artistas/Diana.png" 
-          name="Santi" 
-          specialty="Tradicional Americano" 
+          title="Santi" 
+          subtitle="Tradicional Americano" 
         />
-        <ArtistCard 
+        <Card 
           image="/images/artistas/Dani.png" 
-          name="Fran Sun" 
-          specialty="Realismo Color" 
+          title="Fran Sun" 
+          subtitle="Realismo Color" 
         />
       </Carousel>
       </section>
