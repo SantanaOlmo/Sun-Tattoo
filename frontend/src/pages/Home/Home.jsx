@@ -9,7 +9,7 @@ import ProductsSection from './ProductSection';
 import './styles/Home.css';
 import budgetIcon from '../../assets/icons/budget.svg'; 
 import News from '../../components/common/News';
-
+import SectionTitle from '../../components/common/SectionTitle';
 
 // --- COMPONENTES CON LAZY LOADING (Rompen la cadena crítica de carga) ---
 const Sidebar = lazy(() => import('../../components/common/Sidebar'));
@@ -19,16 +19,20 @@ const BudgetForm = lazy(() => import('../../components/forms/BudgetForm'));
 
 export default function Home() {
   return (
-    <div className="home-page bg-[#16171d]">
+    <div className="home-page overflow-hidden">
       {/* 1. Header y Hero: Carga inmediata (Prioridad LCP) */}
       <Header />
       <Hero />
       
       {/* 2. Sección de Productos/Categorías */}
-      <ProductsSection />
+      <section className="home-section" style={{ marginTop: '0' }}>
+        <ProductsSection />
+      </section>
 
       {/* 3. Carrusel de Trabajos: Visible rápido tras el scroll */}
-      <Carousel title="Trabajos Recientes">
+      <section className="home-section">
+        <SectionTitle title="Trabajos Recientes" />
+        <Carousel>
         <Card 
           image="https://res.cloudinary.com/dvkwtib0o/image/upload/v1773788058/2023-12-15_ey8w2k.webp" 
           title="León Realista" 
@@ -55,6 +59,7 @@ export default function Home() {
           subtitle="Hombro" 
         />
       </Carousel>
+      </section>
       
       {/* 4. Carrusel de Estilos (Lazy): Evita Forced Reflow al cargar Swiper */}
       <Suspense fallback={<div className="h-[650px] bg-black/20" />}>
@@ -62,7 +67,9 @@ export default function Home() {
       </Suspense>
 
       {/* 5. Carrusel de Artistas */}
-      <Carousel title="Nuestros Artistas" isArtist={true}>
+      <section className="home-section">
+        <SectionTitle title="Nuestros Artistas" />
+        <Carousel isArtist={true}>
         <ArtistCard 
           image="/images/artistas/Dani.png" 
           name="Alberto" 
@@ -84,6 +91,7 @@ export default function Home() {
           specialty="Realismo Color" 
         />
       </Carousel>
+      </section>
 
       {/* 6. Sidebar (Lazy) */}
       <Suspense fallback={null}>
@@ -105,22 +113,32 @@ export default function Home() {
       </Carousel>*/}
 
       <Suspense fallback={<div className="h-96 flex items-center justify-center text-gray-500">Cargando formulario de presupuesto...</div>}>
-        <div className="sidebar-header-left">
-          <img src={budgetIcon} alt="Icono Presupuesto" className="header-icon" />
-          <h2 className="sidebar-header-title">Pide presupuesto</h2>
-        </div>
-        <BudgetForm />
+        <section className="home-section">
+          <SectionTitle 
+            title="Pide presupuesto" 
+            icon={budgetIcon} 
+          />
+          <div className="w-full flex justify-center">
+            <BudgetForm />
+          </div>
+        </section>
       </Suspense>
 
       <Suspense>
-        <section style={{ width: '100vw', marginTop: '4rem', marginBottom: '4rem' }}>
-          <News />
+        <section className="home-section">
+          <SectionTitle title="NOTICIAS" />
+          <div className="w-full flex flex-col items-center overflow-hidden">
+            <News />
+          </div>
         </section>
       </Suspense>
 
       {/* 9. Reseñas (Lazy) */}
       <Suspense fallback={<div className="h-40" />}>
-        <ReviewsSection />
+        <section className="home-section">
+          <SectionTitle title="Lo que dicen nuestros clientes" align="center" />
+          <ReviewsSection />
+        </section>
       </Suspense>
       
       <Footer />

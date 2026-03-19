@@ -1,9 +1,10 @@
 /* --- ESTRUCTURA GENERAL --- */
 .main-footer {
-  background-color: #000000;
-  color: #ffffff;
-  padding: 80px 20px 40px 20px;
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 80px 20px 20px 20px;
   font-family: 'Inter', Arial, sans-serif;
+  border-top: 1px solid var(--border);
 }
 
 .footer-container {
@@ -44,12 +45,12 @@
 /* Títulos Elegantes y Alineados */
 .footer-column h3, 
 .footer-map-section h3 {
-  color: #ffffff;
+  color: var(--text-h);
   font-size: 1.3rem;
-  font-weight: 400;
+  font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 30px;
-  letter-spacing: 3px;
+  letter-spacing: -0.05em;
   text-align: left;
   width: 100%;
 }
@@ -69,14 +70,14 @@
 }
 
 .footer-column a {
-  color: #999999;
+  color: var(--text);
   text-decoration: none;
   font-size: 0.95rem;
   transition: all 0.3s ease;
 }
 
 .footer-column a:hover {
-  color: #ffffff;
+  color: var(--text-h);
   padding-left: 5px;
 }
 
@@ -87,7 +88,7 @@
   justify-content: flex-start;
   gap: 12px;
   margin-bottom: 15px;
-  color: #999999;
+  color: var(--text);
   width: 100%;
 }
 
@@ -135,7 +136,7 @@
 .map-placeholder {
   width: 100%;
   aspect-ratio: 1 / 1;
-  background-color: #1a1a1a;
+  background-color: var(--bg-secondary);
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 20px;
@@ -150,7 +151,7 @@
 .address-text {
   font-size: 0.85rem;
   line-height: 1.6;
-  color: #666666;
+  color: var(--text);
   text-align: left;
 }
 
@@ -158,14 +159,16 @@
 .footer-logo-row {
   display: flex;
   justify-content: center;
-  padding: 60px 0 40px 0;
+  padding: 20px 0 30px 0;
 }
 
 .logo-placeholder img {
   max-width: 280px;
   height: auto;
-  /* Si el logo es negro, quita el comentario de abajo para ponerlo blanco */
-  /* filter: brightness(0) invert(1); */
+}
+
+.footer-main-logo {
+  filter: var(--icon-filter);
 }
 
 /* --- LÍNEA DIVISORA --- */
@@ -178,16 +181,23 @@
 .footer-divider-line {
   width: 80%; 
   height: 1px;
-  background-color: #1a1a1a; /* Línea sutil */
+  background-color: var(--border); /* Línea sutil adaptada */
 }
 
-/* --- FILA FINAL: COPYRIGHT --- */
+/* --- FILA FINAL: COPYRIGHT COMO APPLE --- */
 .footer-bottom {
-  padding: 40px 0;
+  padding: 15px 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* ThemeToggle a la derecha */
+  position: relative;
+}
+
+.footer-copyright {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
-  font-size: 0.75rem;
-  color: #444444;
-  letter-spacing: 1px;
 }
 
 /* --- RESPONSIVE --- */
@@ -227,4 +237,15 @@
   }
   .footer-info-item { justify-content: center; }
   .footer-divider-line { width: 90%; }
+  .footer-bottom { 
+    flex-direction: column; 
+    gap: 20px; 
+    padding-top: 25px; 
+    justify-content: center; 
+  }
+  .footer-copyright {
+    position: static;
+    transform: none;
+  }
+  .footer-theme-container { margin: 0 auto; }
 }

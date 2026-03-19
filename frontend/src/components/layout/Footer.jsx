@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import SunTattooIcon from '../../assets/icons/SunTattooLogo.svg';
 import SocialBar from './SocialBar';
+import ThemeToggle from '../common/ThemeToggle';
 import './styles/Footer.css';
 
 export default function Footer() {
+  const [isVisible, setIsVisible] = useState(false);
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <footer className="main-footer">
+    <footer ref={footerRef} className="main-footer overflow-hidden">
       <div className="footer-container">
         
         {/* FILA SUPERIOR: LINKS Y MAPA */}
@@ -13,7 +33,7 @@ export default function Footer() {
           <div className="footer-links-wrapper">
             
             {/* COLUMNA 1: CONTACTO */}
-            <div className="footer-column">
+            <div className={`footer-column transition-all duration-1000 ease-out delay-100 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
               <h3>Contacto</h3>
               <div className="footer-info-item">
                 <span className="icon">✉</span>
@@ -26,7 +46,7 @@ export default function Footer() {
             </div>
 
             {/* COLUMNA 2: NAVEGACIÓN */}
-            <div className="footer-column">
+            <div className={`footer-column transition-all duration-1000 ease-out delay-300 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
               <h3>Información útil</h3>
               <ul>
                 <li><a href="/sobre-nosotros">Sobre nosotros</a></li>
@@ -37,15 +57,15 @@ export default function Footer() {
             </div>
 
             {/* COLUMNA 3: REDES SOCIALES */}
-            <div className="footer-column">
-              <div className="footer-social-container">
+            <div className={`footer-column transition-all duration-1000 ease-out delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
+              <div className="footer-social-container mb-6">
                 <SocialBar />
               </div>
             </div>
           </div>
 
           {/* COLUMNA MAPA */}
-          <div className="footer-map-section">
+          <div className={`footer-map-section transition-all duration-1000 ease-out delay-700 ${isVisible ? 'opacity-100 translate-y-0 blur-none' : 'opacity-0 translate-y-12 blur-sm'}`}>
             <h3>Ubicación</h3>
             <div className="map-placeholder">
               <iframe 
@@ -67,18 +87,22 @@ export default function Footer() {
         </div>
 
         {/* FILA MEDIA: LOGO */}
-        <div className="footer-logo-row">
+        <div className={`footer-logo-row transition-all duration-1000 ease-out delay-1000 ${isVisible ? 'opacity-100 scale-100 blur-none' : 'opacity-0 scale-110 blur-md'}`}>
           <img src={SunTattooIcon} alt="Sun Tattoo Logo" className="footer-main-logo" />
         </div>
 
         {/* LÍNEA DIVISORA */}
-        <div className="footer-divider-container">
+        <div className={`footer-divider-container transition-all duration-1000 ease-out delay-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <div className="footer-divider-line"></div>
         </div>
 
-        {/* FILA FINAL: COPYRIGHT */}
-        <div className="footer-bottom">
-          <p>© 2026 - SUN TATTOO SEVILLA</p>
+        {/* FILA FINAL: COPYRIGHT A LO APPLE */}
+        <div className={`footer-bottom transition-all duration-1000 ease-out delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          <p className="footer-copyright tracking-widest text-[#888888] font-medium text-[10px] md:text-xs m-0!">© 2026 - SUN TATTOO SEVILLA</p>
+          <div className="footer-theme-container flex items-center gap-2">
+            <span className="text-[10px] md:text-xs text-[#888888] font-semibold uppercase tracking-widest">Apariencia</span>
+            <ThemeToggle />
+          </div>
         </div>
 
       </div>

@@ -32,11 +32,14 @@
   color: #ffffff;
   width: 100%;
   padding: 0 20px;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .hero-overlay img {
-  width: 50vw;
-  max-width: 500px;
+  width: 35vw;
+  max-width: 300px;
   height: auto;
   display: inline-block;
 }
@@ -45,5 +48,129 @@
 .hero-overlay h1 {
   font-size: clamp(2rem, 8vw, 4rem); /* Tamaño fluido según pantalla */
   margin: 0;
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.8); /* Sombra para que se lea bien */
+  box-shadow: 0 4px 50px rgba(0, 0, 0, 0.9);
 }
+
+/* Status Inline Reemplaza Subtitulo */
+.hero-status-inline {
+  position: absolute;
+  top: 90px;
+  right: 20px; /* Movido a la derecha bajo petición */
+  z-index: 10; /* Asegurar que flote por encima de todo */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 255, 136, 0.35); /* Más opaco */
+  backdrop-filter: blur(8px);
+  padding: 5px 12px; /* Más chiquitito */
+  border-radius: 50px;
+  border: 1px solid rgba(0, 255, 136, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 255, 136, 0.1);
+  animation: fadeInDown 1s ease-out;
+}
+
+.status-dot-inline {
+  width: 6px;
+  height: 6px;
+  background-color: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00ff88, 0 0 10px #00ff88;
+  animation: pulse 2s infinite;
+}
+
+.status-text-inline {
+  color: #fff;
+  font-size: 0.65rem; /* Más chiquitito */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* From Uiverse.io by TimTrayler */ 
+.searchbar {
+  font-size: 14px;
+  font-family: arial, sans-serif;
+  color: #202124;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+  height: 48px; /* Ligeramente más alto para que quede profesional */
+  background: white;
+  border: 1px solid #dfe1e5;
+  box-shadow: none;
+  border-radius: 24px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
+  transition: box-shadow 0.2s;
+}
+
+.searchbar:hover, .searchbar:focus-within {
+  box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+  border-color: rgba(223,225,229,0);
+}
+
+.searchbar-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 16px;
+}
+
+.searchbar-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 12px;
+}
+
+.search-icon {
+  color: #9aa0a6;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchbar-icon {
+  display: inline-block;
+  fill: currentColor;
+  height: 20px;
+  width: 20px;
+}
+
+.searchbar-center {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  align-items: center;
+}
+
+.searchbar-input {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, .87);
+  outline: none;
+  display: flex;
+  flex: 1;
+  height: 100%;
+  font-size: 16px;
+  width: 100%;
+}
+
+

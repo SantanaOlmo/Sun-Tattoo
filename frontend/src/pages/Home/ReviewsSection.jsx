@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import ReviewCard from './ReviewCard';
 import arrowLeft from '../../assets/icons/chevron-chevron-left-left-svgrepo-com.svg';
 import arrowRight from '../../assets/icons/chevron-chevron-right-right-svgrepo-com.svg';
+import SectionTitle from '../../components/common/SectionTitle';
 import './styles/ReviewsSection.css';
 
 const REVIEWS = [
@@ -111,7 +112,7 @@ const handleWheel = (e) => {
       };
     } else if (normalizedDiff === 1 || normalizedDiff === -(total - 1)) {
       return {
-        transform: 'translateX(60%) scale(0.82)',
+        transform: 'translateX(70%) scale(0.82)',
         zIndex: 5,
         opacity: 0.5,
         filter: 'brightness(0.5)',
@@ -119,7 +120,7 @@ const handleWheel = (e) => {
       };
     } else if (normalizedDiff === -1 || normalizedDiff === (total - 1)) {
       return {
-        transform: 'translateX(-60%) scale(0.82)',
+        transform: 'translateX(-70%) scale(0.82)',
         zIndex: 5,
         opacity: 0.5,
         filter: 'brightness(0.5)',
@@ -136,15 +137,7 @@ const handleWheel = (e) => {
   };
 
   return (
-    <section className="reviews-section-wrapper" style={{ padding: '5rem 0 4rem 0' }}>
-
-      {/* Título */}
-      <div style={{ textAlign: 'center', marginBottom: '3rem', padding: '0 1rem'}}>
-        <h2 className="section-title text-white text-3xl font-bold uppercase tracking-widest">
-          Lo que dicen nuestros clientes
-        </h2>
-      </div>
-
+    <section className="reviews-section-wrapper" style={{ padding: '2rem 0 4rem 0' }}>
       {/* Flechas + Stage */}
       <div style={{
         display: 'flex',
@@ -171,7 +164,7 @@ const handleWheel = (e) => {
           style={{
             position: 'relative',
             width: '100%',
-            maxWidth: '420px',
+            maxWidth: '600px',
             paddingTop: '1.5rem',
             paddingBottom: '1.5rem',
           }}

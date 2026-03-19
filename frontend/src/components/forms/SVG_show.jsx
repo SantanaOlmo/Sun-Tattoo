@@ -1,6 +1,11 @@
+import { useState } from 'react';
 import './styles/SVG_show.css';
 
 const SVG_show = ({ selectedParts = [], onPartClick, ...props }) => {
+  const [zoom, setZoom] = useState(1);
+
+  const handleZoomIn = () => setZoom(z => Math.min(z + 0.5, 3));
+  const handleZoomOut = () => setZoom(z => Math.max(z - 0.5, 1));
   
   const isSelected = (id) => selectedParts.includes(id);
 
@@ -26,17 +31,51 @@ const handlePointerClick = (e) => {
 };
 
   return (
-    <div className="svg-body-container w-full h-full flex justify-center items-center">
-      {/* Estilos inyectados: Controlan el color sin tocar los PATHS */}      
-      <svg
-        id="Capa_1"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 447 810.48"
-        className="w-auto h-full max-h-[70vh] block mx-auto touch-pan-y"
-        style={{ touchAction: 'pan-y' }}
-        onClick={handlePointerClick}
-        {...props}
-      >
+    <div className="relative svg-body-container w-full h-full bg-[var(--bg-secondary)] overflow-hidden rounded-l-[19px]">
+      
+      {/* Botones de Zoom estilo Canva (Pill container) */}
+      <div className="absolute top-4 right-4 z-20 flex bg-[var(--bg)] border border-[var(--border)] rounded-full shadow-sm overflow-hidden text-[var(--text-h)]">
+        <button 
+          type="button" 
+          onClick={handleZoomIn} 
+          disabled={zoom >= 3}
+          className="w-10 h-10 flex items-center justify-center font-bold text-xl hover:bg-[var(--bg-secondary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          aria-label="Acercar"
+        >
+          +
+        </button>
+        <div className="w-[1px] bg-[var(--border)] mx-0 my-2" />
+        <button 
+          type="button" 
+          onClick={handleZoomOut} 
+          disabled={zoom <= 1}
+          className="w-10 h-10 flex items-center justify-center font-bold text-3xl leading-none pb-1 hover:bg-[var(--bg-secondary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          aria-label="Alejar"
+        >
+          -
+        </button>
+      </div>
+
+      <div className="w-full h-full overflow-auto custom-scrollbar flex items-center justify-center">
+        <div 
+          className="flex items-center justify-center min-h-full transition-all duration-300 ease-out" 
+          style={{ width: `${100 * zoom}%`, height: `${100 * zoom}%` }}
+        >
+          {/* Estilos inyectados: Controlan el color sin tocar los PATHS */}      
+          <svg
+            id="Capa_1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 447 810.48"
+            className="block touch-pan-x touch-pan-y"
+            style={{ 
+               width: 'auto', 
+               height: `${100 * zoom}%`, 
+               maxHeight: '800px',
+               transition: 'height 0.3s ease-out'
+            }}
+            onClick={handlePointerClick}
+            {...props}
+          >
         <path id="tibia_der" className={`cls-1 ${isSelected('tibia_der') ? 'path-selected' : ''}`} d="M178.8,555.6h1.08c.03,4.55.15,8.77.96,12.96.83,4.32,3.77,7.08,5.76,10.32,1.91,3.12,3.6,8.99,6.72,10.68,1.44.78,2.65.43,4.44.84,1.82.42,4.14.84,6.12,0,5.25-2.22,7.5-12.64,10.56-17.52,1.71-2.72,4.16-4.72,5.28-8.16h.24v.12c-2.87,7.67-6.05,20.44-3.96,30.24,1.72,8.06,3.38,16.15,5.28,24.48.85,3.71,2.4,8.95,1.68,13.8-.89,6.02-.38,11.75-1.44,17.16-2.82,14.42-6.97,30.66-4.32,47.76.83,5.36.62,10.28,2.04,14.76-.72-.04-1.04-.06-1.32.36-1.73,2.84-1.11,7.5-2.04,11.16-.8,3.16-2.3,6.02-3.84,8.64-.9,1.53-2.78,2.53-2.52,4.8-1.57-.54-2.55-1.84-4.68-2.16-3.09-.46-5.32,2.52-7.56,3.24.53-3.67-1.23-5.28-2.04-7.92-.4-2.48-.8-4.96-1.2-7.44v-4.32c-.48-5.96-.96-11.92-1.44-17.88-1.68-6.96-3.36-13.92-5.04-20.88-.52-1.8-1.04-3.6-1.56-5.4v-1.44c-.75.27-2.26-5.89-2.64-7.08-2.33-7.38-4.99-14.07-6.84-22.2-3.67-16.11-1.56-38.18,1.2-53.16,2.03-11.01,1.1-23.97,1.08-35.76Z"/>
         <path id="tibia_izq" className={`cls-1 ${isSelected('tibia_izq') ? 'path-selected' : ''}`} d="M267.12,555.6h.96c-.04,11.93-.82,25.29,1.2,36.12,2.83,15.19,4.91,36.45,1.2,52.68-1.53,6.69-3.42,12.38-5.52,18.24-1.33,3.72-2.49,8.2-3.96,11.16v1.44c-.36,1.24-.72,2.48-1.08,3.72-2.15,6.95-3.63,14.75-5.4,21.96-1.14,4.68-.53,10.54-1.44,15.36-.04,2.52-.08,5.04-.12,7.56-.44,2.6-.88,5.2-1.32,7.8-.79,2.47-2.4,3.88-1.92,7.44-2.22-.7-4.49-3.73-7.56-3.24-2.11.34-3.12,1.65-4.68,2.16.26-1.96-4.25-7.59-5.16-9.72-1.84-4.3-1.34-11.05-3.36-15.24h-1.2v-.12c1.51-4.56,1.17-9.76,2.04-15.24,2.64-16.57-1.43-32.48-4.2-46.2-1.02-5.07-.66-10.29-1.56-15.84-.91-5.58.59-11.47,1.56-15.6,1.95-8.25,3.52-16.38,5.28-24.36,2.32-10.52-.87-22.46-3.84-30.84l.12-.12h.12c1.07,3.45,3.58,5.46,5.28,8.16,3.07,4.88,5.31,15.31,10.56,17.52,1.98.83,4.3.42,6.12,0,1.79-.41,3-.06,4.44-.84,1.95-1.06,4.27-5.51,5.28-7.8,1.75-3.99,5.02-6.93,6.6-10.92,1.44-3.63,1.57-10.48,1.56-15.24Z"/>
 
@@ -96,7 +135,9 @@ const handlePointerClick = (e) => {
         <path id="cabeza" className={`cls-1 ${isSelected('cabeza') ? 'path-selected' : ''}`} d="M221.28,30.36c16.01-.09,28.37,7.17,32.28,19.68,1.23,3.92,1.43,7.96,2.16,12.6-.08,1.6-.16,3.2-.24,4.8.98,6.68-.39,15.46-2.52,19.8l-.24-.12c-.55-2.11.4-4.71-.12-7.08-.47-2.15-.53-4.07-.96-6.36-.66-3.48-2.6-5.84-3.36-9.12-.72-3.08.05-7.06-.96-9.84-2.28-1.12-4.56-2.24-6.84-3.36-4.48-1.08-8.95.95-12.48.96h-10.32c-2.57-.49-7.44-1.87-11.16-.96l-6.96,3.48c-.28,3.24-.56,6.48-.84,9.72-1,2.52-2,5.04-3,7.56-.41,1.33-.37,3.2-.72,4.2-1.15,3.26.59,7.98-.84,10.92l-.24-.12c-4.17-12.89-3.83-36.35,3.36-45.48,3.51-4.46,11.02-8.08,17.16-9.96,2.28-.44,4.56-.88,6.84-1.32Z"/>
         <path id="oreja_izq" className={`cls-1 ${isSelected('oreja_izq') ? 'path-selected' : ''}`} d="M258.84,77.16c3.21,0,4.03,3.76,2.88,6.72-.8,2.06-2.32,3.59-3.12,5.52-.44,2.08-.88,4.16-1.32,6.24-.65,1.8-1.95,3.18-2.64,4.8-.48,1.15-.49,2.12-1.44,2.76-.82.55-2.39.38-3.36.48.76-3.6,1.52-7.2,2.28-10.8.24-1.92.48-3.84.72-5.76.72-2.25,1.92-3.92,2.04-7.08.75-.17,1.11-1.35,1.8-1.92.72-.32,1.44-.64,2.16-.96Z"/>
         <path id="oreja_der" className={`cls-1 ${isSelected('oreja_der') ? 'path-selected' : ''}`} d="M187.08,77.28c4.62.03,4.38,3.27,5.52,6.84.52,1.12,1.04,2.24,1.56,3.36.24,1.84.48,3.68.72,5.52.68,3.48,1.36,6.96,2.04,10.44-1.15.18-2.23.18-3.12-.48-1.18-.87-3.8-6.9-4.32-8.64-.36-1.76-.72-3.52-1.08-5.28-.86-2.02-2.54-3.59-3.24-5.88-.85-2.75.27-4.83,1.92-5.88Z"/>
-      </svg>
+        </svg>
+        </div>
+      </div>
     </div>
   );
 };

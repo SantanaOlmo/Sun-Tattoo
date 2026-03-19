@@ -56,7 +56,7 @@ export default function CarouselTattooStyles() {
               }}
               className="
                 absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2
-                text-white 
+                text-white! 
                 uppercase 
                 tracking-tight 
                 text-center 

@@ -1,6 +1,7 @@
 import React, { useRef, Children } from 'react';
 import './styles/Carousel.css';
 import NavigationArrows from './NavigationArrows';
+import SectionTitle from './SectionTitle';
 
 export default function Carousel({ children, title, isArtist = false }) {
   const scrollRef = useRef(null);
@@ -21,12 +22,7 @@ export default function Carousel({ children, title, isArtist = false }) {
   };
 
   return (
-    <div className={`carousel-wrapper overflow-hidden ${isArtist ? 'py-20' : 'py-10'}`}>
-      {title && (
-        <h2 className="carousel-section-title px-12 mb-8 text-2xl font-semibold tracking-wide uppercase">
-          {title}
-        </h2>
-      )}
+    <div className={`carousel-wrapper overflow-hidden ${isArtist ? 'pb-20 pt-4' : 'pb-10 pt-2'}`}>
       
       <div className="carousel-main relative w-full"> 
         <NavigationArrows 
@@ -40,7 +36,7 @@ export default function Carousel({ children, title, isArtist = false }) {
             carousel-container 
             flex overflow-x-auto gap-8 
             scrollbar-hide 
-            px-[80px] 
+            px-10 md:px-20 
             ${isArtist ? 'py-14' : 'py-4'}
             /* Añadimos will-change para que el navegador use la GPU */
             will-change-scroll

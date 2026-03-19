@@ -17,6 +17,9 @@ export default function ProductCategory({ title, image, link }) {
       
       <div className="category-overlay">
         <h2 className="category-title">{title}</h2>
+        <div className="category-link-wrapper">
+          <span className="category-link">Ver todos</span>
+        </div>
       </div>
     </a>
   );

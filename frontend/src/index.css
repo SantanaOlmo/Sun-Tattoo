@@ -19,10 +19,11 @@ body {
   -ms-overflow-style: none;
 }
 
+/* Base / Light Mode */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
+  --text: #4b5563;       /* Gris muy oscuro pero suave para leer */
+  --text-h: #111827;     /* Casi negro para títulos */
+  --bg: #f9fafb;         /* Blanco roto para no quemar la vista */
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
   --accent: #aa3bff;
@@ -30,6 +31,7 @@ body {
   --accent-border: rgba(170, 59, 255, 0.5);
   --social-bg: rgba(244, 243, 236, 0.5);
   --shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --icon-filter: brightness(0); /* SVGs en color negro para fondo claro */
 
   /* AQUÍ DEFINIMOS ROBOTO COMO BASE */
   --sans: 'Roboto', system-ui, -apple-system, sans-serif;
@@ -54,25 +56,27 @@ body {
   }
 }
 
-/* CLASE DE UTILIDAD POR SI LA NECESITAS EN EL JSX */
-.font-tattoo {
-  font-family: var(--font-tattoo) !important;
-}
-
-.no-scroll {
-  overflow: hidden !important;
-  height: 100vh !important;
-  width: 100%;
-  position: fixed;
-}
-
-.no-scroll::-webkit-scrollbar {
-  display: none;
-  width: 0 !important;
+/* 
+  DARK MODE PREFERENCES
+  Se aplica si el HTML tiene la clase .dark O si el sistema lo prefiere 
+  y el HTML NO tiene la clase .light 
+*/
+html.dark {
+  --text: #9ca3af;     /* Gris suave */
+  --text-h: #f3f4f6;   /* Blanco roto para títulos */
+  --bg: #16171d;       /* Gris casi negro, evita smearing en OLED */
+  --border: #2e303a;
+  --code-bg: #1f2028;
+  --accent: #c084fc;
+  --accent-bg: rgba(192, 132, 252, 0.15);
+  --accent-border: rgba(192, 132, 252, 0.5);
+  --social-bg: rgba(47, 48, 58, 0.5);
+  --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  --icon-filter: brightness(0) invert(1); /* SVGs en blanco para el fondo oscuro */
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  html:not(.light) {
     --text: #9ca3af;
     --text-h: #f3f4f6;
     --bg: #16171d;
@@ -83,9 +87,16 @@ body {
     --accent-border: rgba(192, 132, 252, 0.5);
     --social-bg: rgba(47, 48, 58, 0.5);
     --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+    --icon-filter: brightness(0) invert(1);
   }
+}
 
-  #social .button-icon {
+html.dark #social .button-icon {
+  filter: invert(1) brightness(2);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light) #social .button-icon {
     filter: invert(1) brightness(2);
   }
 }
@@ -99,7 +110,10 @@ body {
 html, body {
   width: 100%;
   overflow-x: hidden; 
-  background-color: var(--bg); /* Usamos la variable para que cambie en dark mode */
+  background-color: var(--bg);
+  color: var(--text);
+  /* Smooth color transition when toggling */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #root {
@@ -113,7 +127,7 @@ html, body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--heading);
-  color: var(--bg);
+  color: var(--text-h);
   letter-spacing: 2px;
 }
 

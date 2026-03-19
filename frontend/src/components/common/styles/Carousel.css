@@ -1,6 +1,6 @@
 /* CAROUSEL CSS MEJORADO */
 .carousel-wrapper {
-  padding: 60px 0;
+  padding: 0;
   background: transparent; /* Fondo negro sólido */
   width: 100%;
   overflow: hidden; /* Evita que las cards se salgan del layout */
@@ -8,8 +8,7 @@
 
 .carousel-section-title {
   color: #fff;
-  text-align: center;
-  margin-bottom: 40px;
+  text-align: left;
   text-transform: uppercase;
   font-weight: 800;
   letter-spacing: 2px;

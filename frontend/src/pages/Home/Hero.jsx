@@ -1,3 +1,4 @@
+import React from 'react';
 import './styles/Hero.css';
 import sunLogo from '../../assets/icons/SunTattooLogo.svg';
 
@@ -7,7 +8,13 @@ export default function Hero() {
 
   return (
     <section className="hero-section">
-      <div className="hero-media">
+      {/* STATUS INLINE (FLOTANDO AISLADO) */}
+      <div className="hero-status-inline">
+        <span className="status-dot-inline"></span>
+        <span className="status-text-inline">Abierto ahora</span>
+      </div>
+
+      <div className="hero-media bg-black">
         <video 
           src={videoSrc}
           poster={videoPoster}
@@ -16,7 +23,11 @@ export default function Hero() {
           muted 
           playsInline
           crossOrigin="anonymous"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover'
+          }}
         />
       </div>
 
@@ -27,7 +38,26 @@ export default function Hero() {
           className="hero-logo" 
           fetchPriority="high"
         />
-        <p className="hero-subtitle">Arte y precisión en cada trazo</p>
+
+        {/* BUSCADOR IA MODO GOOGLE UIVERSE */}
+        <div className="mt-8 w-full px-4 mx-auto" style={{ animation: 'fadeInDown 1.2s ease-out' }}>
+          <div className="searchbar">
+            <div className="searchbar-wrapper">
+              <div className="searchbar-left">
+                <span className="search-icon searchbar-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                  </svg>
+                </span>
+              </div>
+
+              <div className="searchbar-center">
+                <input type="text" className="searchbar-input" maxLength="2048" name="q" autoCapitalize="off" autoComplete="off" title="Search" role="combobox" placeholder="Pregúntale a la IA" />
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );

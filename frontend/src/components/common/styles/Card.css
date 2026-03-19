@@ -129,13 +129,18 @@
 
 .card-info h4 {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-h); /* Usamos tu variable de color global */
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.01em; /* Modern, clean look Google-style */
+  color: var(--text-h);
+  line-height: 1.4;
 }
 
 .card-info p {
-  margin: 2px 0 0 0;
-  font-size: 1.3rem;
+  margin: 0.25rem 0 0 0;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.015em; /* Better readability for secondary text */
   color: var(--text);
+  line-height: 1.5;
 }

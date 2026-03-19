@@ -1,8 +1,8 @@
 /* 1. BASE */
 .cls-1:not(.path-selected),
 .cls-1:not(.path-selected) path {
-    fill: #f0f0f0 !important;
-    stroke: #cccccc !important;
+    fill: #dedede !important;
+    stroke: #b0b0b0 !important;
     stroke-width: 0.5px;
     transition: fill 0.2s ease, stroke 0.2s ease;
     cursor: pointer;

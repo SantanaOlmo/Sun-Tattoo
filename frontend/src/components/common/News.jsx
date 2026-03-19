@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import arrowLeft from '../../assets/icons/chevron-chevron-left-left-svgrepo-com.svg';
 import arrowRight from '../../assets/icons/chevron-chevron-right-right-svgrepo-com.svg';
+import SectionTitle from './SectionTitle';
 
 const newsData = [
   {
@@ -54,105 +55,115 @@ const btnStyle = {
 
 const News = () => {
   const [current, setCurrent] = useState(0);
-  const touchStartX = useRef(null);
-  const touchStartY = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef(null);
 
-  const prev = () => setCurrent(i => (i - 1 + newsData.length) % newsData.length);
-  const next = () => setCurrent(i => (i + 1) % newsData.length);
-
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-    touchStartY.current = e.touches[0].clientY;
-  };
-
-  const handleTouchEnd = (e) => {
-    if (touchStartX.current === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX.current;
-    const dy = Math.abs(e.changedTouches[0].clientY - touchStartY.current);
-    if (Math.abs(dx) > 40 && dy < 60) {
-      dx < 0 ? next() : prev();
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
     }
-    touchStartX.current = null;
-    touchStartY.current = null;
-  };
+    return () => observer.disconnect();
+  }, []);
 
-  const article = newsData[current];
+  const prev = () => setCurrent(i => Math.max(0, i - 1));
+  const next = () => setCurrent(i => Math.min(newsData.length - 1, i + 1));
 
   return (
-    <div style={{ width: '100%', maxWidth: '42rem', margin: '0 auto', padding: '0 1rem' }}>
-
-      {/* Título sección */}
-      <h2 className="text-white text-2xl font-bold" style={{ marginBottom: '2rem' }}>
-        Noticias
-      </h2>
-
-      {/* Flechas + Card */}
-      <div
-        style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
-        {/* Flecha izquierda */}
-        <button onClick={prev} style={btnStyle} aria-label="Anterior">
-          <img
-            src={arrowLeft}
-            alt="Prev"
-            style={{ width: '1.5rem', height: '1.5rem', filter: 'brightness(0) invert(1)' }}
-          />
+    <div 
+      ref={containerRef}
+      className={`overflow-hidden transition-all duration-1000 ease-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
+      }`}
+      style={{ width: '95%', maxWidth: '1200px', margin: '0 auto' }}
+    >
+      {/* Contenedor Carrusel */}
+      <div className="relative group/nav">
+        {/* Flecha Izquierda */}
+        <button 
+          onClick={prev} 
+          style={{...btnStyle, opacity: current === 0 ? 0 : 1, pointerEvents: current === 0 ? 'none' : 'auto'}} 
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 hover:bg-white/10 transition-all"
+          aria-label="Anterior"
+        >
+          <img src={arrowLeft} alt="Prev" style={{ width: '1.5rem', height: '1.5rem', filter: 'brightness(0) invert(1)' }} />
         </button>
 
-        {/* Card */}
-        <a href={article.href} className="group" style={{ flex: 1, minWidth: 0 }}>
-          <figure className="overflow-hidden rounded-lg relative mb-3 transition-transform duration-300 group-hover:scale-105">
-            <img
-              src={article.image}
-              alt={article.title}
-              className="object-cover object-center aspect-video w-full bg-gray-400"
-            />
-            <span className="absolute top-2 left-2 px-3 py-1 bg-gray-950/20 backdrop-blur-sm text-xs rounded-full text-gray-50">
-              {article.category}
-            </span>
-            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
-            <p className="absolute inset-x-0 bottom-0 px-4 pb-3 text-lg font-semibold text-white leading-snug">
-              {article.title}
-            </p>
-          </figure>
+        {/* Ventana de visión */}
+        <div className="overflow-hidden cursor-grab active:cursor-grabbing">
+          <div 
+            className="flex transition-transform duration-500 ease-out gap-6"
+            style={{ 
+              transform: `translateX(calc(-${current * 100}% / 1))` // Default mobile logic
+            }}
+            id="news-slider"
+          >
+            {newsData.map((article) => (
+              <div key={article.id} className="news-card-wrapper shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)]">
+                <a href={article.href} className="group block relative">
+                  <figure className="overflow-hidden rounded-xl relative mb-4 aspect-video">
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="object-cover object-center w-full h-full bg-gray-800 transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0" style={{ paddingLeft: '1.5rem', paddingBottom: '1.5rem', paddingRight: '1rem' }}>
+                      <h3 className="text-xl text-left font-black text-white! leading-tight tracking-tight group-hover:translate-x-1 transition-transform duration-300 line-clamp-2">
+                        {article.title}
+                      </h3>
+                    </div>
+                  </figure>
 
-          <time dateTime={article.date} className="text-xs text-gray-50/50">
-            {article.dateLabel}
-            <span className="mx-1">⦁</span>
-            {article.readTime}
-          </time>
+                  <div className="flex items-center gap-3 mb-2 mt-4">
+                    <time dateTime={article.date} className="text-[10px] font-medium text-[var(--text)] uppercase tracking-widest transition-colors duration-300">
+                      {article.dateLabel}
+                    </time>
+                    <span className="w-1 h-1 rounded-full bg-[var(--text)] opacity-30" />
+                    <span className="text-[10px] font-medium text-[var(--text)] uppercase tracking-widest transition-colors duration-300">{article.readTime}</span>
+                  </div>
 
-          <p className="line-clamp-2 text-sm text-gray-50 opacity-50 mt-1 group-hover:opacity-90 transition-opacity duration-300">
-            {article.excerpt}
-          </p>
-        </a>
+                  <p className="line-clamp-2 text-sm text-[var(--text)] text-left leading-relaxed transition-colors duration-300">
+                    {article.excerpt}
+                  </p>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
 
-        {/* Flecha derecha */}
-        <button onClick={next} style={btnStyle} aria-label="Siguiente">
-          <img
-            src={arrowRight}
-            alt="Next"
-            style={{ width: '1.5rem', height: '1.5rem', filter: 'brightness(0) invert(1)' }}
-          />
+        {/* Flecha Derecha */}
+        <button 
+          onClick={next} 
+          style={{...btnStyle, opacity: current >= newsData.length - 1 ? 0 : 1, pointerEvents: current >= newsData.length - 1 ? 'none' : 'auto'}} 
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 hover:bg-white/10 transition-all"
+          aria-label="Siguiente"
+        >
+          <img src={arrowRight} alt="Next" style={{ width: '1.5rem', height: '1.5rem', filter: 'brightness(0) invert(1)' }} />
         </button>
       </div>
 
-      {/* Dots */}
-      <div className="flex justify-center gap-2" style={{ marginTop: '1.5rem' }}>
-        {newsData.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            className={`rounded-full transition-all duration-300 ${
-              i === current ? 'w-4 h-2 bg-white' : 'w-2 h-2 bg-white/30'
-            }`}
-            aria-label={`Ir a noticia ${i + 1}`}
-          />
-        ))}
-      </div>
-
+      {/* Estilos inline para el movimiento responsivo */}
+      <style>{`
+        @media (min-width: 640px) {
+          #news-slider {
+            transform: translateX(calc(-${current * 50}%)) !important;
+          }
+        }
+        @media (min-width: 1024px) {
+          #news-slider {
+            transform: translateX(calc(-${current * 33.33}%)) !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

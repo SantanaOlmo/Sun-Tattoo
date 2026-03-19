@@ -7,7 +7,7 @@ const ArtistCard = ({ name, specialty, image }) => {
       
       {/* CARD: Contenedor de la imagen */}
       {/* Eliminado 'group-hover:shadow-[0_4px_25px_rgba(0,132,255,0.4)]'. Solo cambiamos el color del borde. */}
-      <div className="relative w-full h-[280px] bg-[#1a1a1a] rounded-[20px] border-2 border-[#2e303a] transition-all duration-500 ease-out group-hover:border-[#0084ff] overflow-visible">
+      <div className="relative w-full h-[280px] bg-[#1a1a1a] rounded-[20px] border-2 border-[var(--border)] transition-all duration-500 ease-out group-hover:border-[#0084ff] overflow-visible">
         
         {/* Imagen con bordes redondeados internos */}
         <div className="w-full h-full rounded-[18px] overflow-hidden">
@@ -28,10 +28,10 @@ const ArtistCard = ({ name, specialty, image }) => {
       {/* INFO: Separación mt-16 */}
       <div className="mt-16 text-center">
         {/* El nombre del artista cambia a azul en hover. */}
-        <h4 className="text-[#f3f4f6] text-lg font-bold tracking-tighter uppercase transition-colors duration-300 group-hover:text-[#0084ff]">
+        <h4 className="text-[var(--text-h)] text-lg font-bold tracking-tighter uppercase transition-colors duration-300 group-hover:text-[#0084ff]">
           {name}
         </h4>
-        <p className="text-[#9ca3af] text-[10px] font-bold mt-1 tracking-[0.2em] uppercase">
+        <p className="text-[var(--text)] text-[10px] font-bold mt-1 tracking-[0.2em] uppercase">
           {specialty}
         </p>
       </div>

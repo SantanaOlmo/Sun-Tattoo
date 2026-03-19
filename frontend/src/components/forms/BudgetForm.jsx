@@ -15,24 +15,17 @@ export default function BudgetForm() {
 
   return (
     <div className="budget-form-container">
-      <div className="budget-content-wrapper" style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+      <div className="budget-content-wrapper">
         
-        {/* SECCIÓN DEL SVG */}
-        <div 
-            className="body-visualizer" 
-            style={{ 
-              flex: '0.7',           // Menos que 1 hace que ocupe menos espacio
-              minWidth: '280px',     // Bajamos un poco el mínimo
-              borderRadius: '15px'
-            }}
-          >
+        {/* SECCIÓN DEL SVG (Blanca) */}
+        <div className="body-visualizer">
             <Suspense fallback={<div style={{ height: '500px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#666' }}>Cargando modelo...</div>}>
               <SVG_reader onPartsChange={handlePartsChange} />
             </Suspense>
           </div>
 
-        {/* FORMULARIO DE DATOS */}
-        <form className="budget-form" style={{ flex: '1' }} onSubmit={(e) => e.preventDefault()}>
+        {/* FORMULARIO DE DATOS (Negro) */}
+        <form className="budget-form" onSubmit={(e) => e.preventDefault()}>
           
           <div className="form-group">
             <label htmlFor="tattoo-style">Tipo de dibujo</label>

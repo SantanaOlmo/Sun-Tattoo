@@ -11,6 +11,11 @@
     rgba(0, 0, 0, 0.5) 60%, 
     rgba(0, 0, 0, 0) 100%
   );
+  transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.custom-header.contact-open {
+  background: #0a0b0e !important;
 }
 
 .header-container {
@@ -28,6 +33,7 @@
   flex: 1;
   display: flex;
   justify-content: flex-start;
+  z-index: 1001; /* Elevado por encima del fondo oscuro del nav-menu móvil */
 }
 
 .header-logo-img {
@@ -61,7 +67,8 @@
   transition: color 0.3s ease;
 }
 
-.nav-list a:hover {
+.nav-list a:hover,
+.nav-list a.active {
   color: #ff0000;
 }
 
@@ -87,19 +94,86 @@
   height: 32px;
 }
 
+/* Oculto en PC por la redundancia con el Footer */
+.mobile-social-wrapper {
+  display: none;
+}
+
 /* --- RESPONSIVE LOGIC --- */
 
 /* Cuando la pantalla mide 1024px o menos (Tablets/Móviles) */
 @media (max-width: 1024px) {
   .nav-menu {
-    display: none; /* Desaparecen los enlaces */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg); /* Se sincroniza globalmente con el modo light/dark */
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Alinhado a la izquierda */
+    padding-left: 15%; /* Spacing from left */
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+    z-index: -1;
+  }
+
+  .nav-menu.is-open {
+    transform: translateY(0);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 99;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 30px;
+    align-items: flex-start; /* Alinhado a la izquierda */
+    width: 100%;
+  }
+
+  .header-logo-img.menu-open-logo {
+    filter: var(--icon-filter);
+  }
+
+  .nav-list li {
+    width: 100%;
+  }
+
+  .nav-list a {
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+    text-align: left; /* Text alignment left */
+    display: block;
+    width: 100%;
+    color: var(--text-h); /* Sincroniza letras negras o blancas de global */
+    transition: color 0.3s ease;
   }
 
   .mobile-menu-btn {
-    display: flex; /* APARECE EL MENÚ BURGUER */
+    display: flex;
+    z-index: 1001; /* Above the menu */
+    transition: color 0.3s ease;
+  }
+
+  .mobile-menu-btn.is-active {
+    color: var(--text-h); /* El icono de la cruz cambia a negro o blanco según el fondo */
   }
 
   .header-container {
-    height: 70px; /* Un poco más estrecho en móvil */
+    height: 70px;
+  }
+
+  /* Redes sociales flotando al fondo del menú móvil */
+  .mobile-social-wrapper {
+    display: flex;
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
   }
 }
