@@ -87,17 +87,17 @@ export default function Footer() {
         </div>
 
         {/* FILA MEDIA: LOGO */}
-        <div className={`footer-logo-row transition-all duration-1000 ease-out delay-1000 ${isVisible ? 'opacity-100 scale-100 blur-none' : 'opacity-0 scale-110 blur-md'}`}>
-          <img src={SunTattooIcon} alt="Sun Tattoo Logo" className="footer-main-logo" />
+        <div className="footer-logo-row">
+          <img src={SunTattooIcon} alt="Sun Tattoo Logo" width="280" height="80" className="footer-main-logo" />
         </div>
 
         {/* LÍNEA DIVISORA */}
-        <div className={`footer-divider-container transition-all duration-1000 ease-out delay-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="footer-divider-container">
           <div className="footer-divider-line"></div>
         </div>
 
         {/* FILA FINAL: COPYRIGHT A LO APPLE */}
-        <div className={`footer-bottom transition-all duration-1000 ease-out delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+        <div className="footer-bottom">
           <p className="footer-copyright tracking-widest text-[#888888] font-medium text-[10px] md:text-xs m-0!">© 2026 - SUN TATTOO SEVILLA</p>
           <div className="footer-theme-container flex items-center gap-2">
             <span className="text-[10px] md:text-xs text-[#888888] font-semibold uppercase tracking-widest">Apariencia</span>

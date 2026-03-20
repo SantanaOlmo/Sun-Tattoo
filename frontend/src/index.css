@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-/* 1. IMPORTACIÓN DE FUENTES (Asegúrate de tener esto) */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Anton+SC&display=swap');
-
 /* --- OCULTAR SCROLLBAR EN HOME PERO PERMITIR SCROLL --- */
 .home-page::-webkit-scrollbar,
 html::-webkit-scrollbar,
@@ -62,7 +59,7 @@ body {
   y el HTML NO tiene la clase .light 
 */
 html.dark {
-  --text: #9ca3af;     /* Gris suave */
+  --text: #d1d5db;     /* Gris claro para alto contraste */
   --text-h: #f3f4f6;   /* Blanco roto para títulos */
   --bg: #000000;       /* Negro absoluto */
   --border: #2e303a;
@@ -77,7 +74,7 @@ html.dark {
 
 @media (prefers-color-scheme: dark) {
   html:not(.light) {
-    --text: #9ca3af;
+    --text: #d1d5db;
     --text-h: #f3f4f6;
     --bg: #000000;
     --border: #2e303a;

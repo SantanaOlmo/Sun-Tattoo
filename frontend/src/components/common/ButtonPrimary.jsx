@@ -19,7 +19,7 @@ export default function ButtonPrimary({ children, onClick, type = "button", clas
         w-fit min-w-fit self-center mx-auto
         
         /* 4. COLORES */
-        bg-[#0084ff] hover:bg-[#0066cc] text-white
+        bg-[#0057e7] hover:bg-[#004bbd] text-white
         border-none shadow-md
         
         /* 5. INTERACCIÓN */

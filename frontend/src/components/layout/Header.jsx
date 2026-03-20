@@ -45,6 +45,8 @@ export default function Header() {
             <img 
               src={SunTattooIcon} 
               alt="Sun Tattoo Logo" 
+              width="123"
+              height="35"
               className={`header-logo-img ${isMenuOpen ? 'menu-open-logo' : ''}`} 
             />
           </a>

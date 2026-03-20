@@ -35,6 +35,8 @@ export default function Hero() {
         <img 
           src={sunLogo} 
           alt="Sun Tattoo Logo" 
+          width="300"
+          height="86"
           className="hero-logo" 
           fetchPriority="high"
         />
@@ -52,7 +54,7 @@ export default function Hero() {
               </div>
 
               <div className="searchbar-center">
-                <input type="text" className="searchbar-input" maxLength="2048" name="q" autoCapitalize="off" autoComplete="off" title="Search" role="combobox" placeholder="Pregúntale a la IA" />
+                <input type="text" className="searchbar-input" maxLength="2048" name="q" autoCapitalize="off" autoComplete="off" title="Search" placeholder="Pregúntale a la IA" />
               </div>
             </div>
           </div>

@@ -31,7 +31,7 @@ export default function ReviewCard({ name, text }) {
       {/* Texto */}
       <div className="review-content">
         <span className="quote-icon top">“</span>
-        <p className="review-text italic text-sm leading-relaxed text-gray-700">
+        <p className="review-text italic text-sm leading-relaxed text-[var(--text)]">
           {text}
         </p>
         <span className="quote-icon bottom">”</span>

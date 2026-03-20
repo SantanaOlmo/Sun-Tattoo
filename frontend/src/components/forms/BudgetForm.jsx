@@ -41,7 +41,7 @@ export default function BudgetForm() {
               value={zona} 
               onChange={(e) => setZona(e.target.value)} 
             />
-            <small style={{ color: '#666', marginTop: '4px', display: 'block' }}>
+            <small style={{ color: 'var(--text)', marginTop: '4px', display: 'block' }}>
               Puedes seleccionar varias partes en el modelo.
             </small>
           </div>
