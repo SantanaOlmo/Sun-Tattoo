@@ -9,8 +9,12 @@ export default function Header() {
   const [isContactOpen, setIsContactOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    const nextState = !isMenuOpen;
+    setIsMenuOpen(nextState);
     if (isContactOpen) setIsContactOpen(false);
+    
+    // Añadimos clase global para que otros componentes (como el Sidebar) reaccionen
+    document.documentElement.classList.toggle('mobile-menu-open', nextState);
   };
 
   const toggleContact = (e) => {

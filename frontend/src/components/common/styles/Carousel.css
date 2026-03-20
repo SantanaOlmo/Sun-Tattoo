@@ -12,29 +12,62 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: 100%;
-  padding: 0 60px; /* Menos padding para dar más espacio a las cards */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%); /* Forzar el 100vw si el contenedor padre es pequeño */
   box-sizing: border-box;
+}
+
+.carousel-side-nav {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.carousel-nav-icon {
+  opacity: 0.6;
+  filter: brightness(0) invert(1); /* Blanco por defecto */
+}
+
+.carousel-nav-icon:hover {
+  opacity: 1;
+}
+
+/* Modo claro: Flechas negras */
+[data-theme='light'] .carousel-nav-icon,
+.light-mode .carousel-nav-icon {
+  filter: brightness(0); /* Negro */
+}
+
+@media (max-width: 768px) {
+  .carousel-side-nav {
+    width: 60px;
+  }
 }
 
 .carousel-container {
   display: flex;
-  gap: 30px; /* Espaciado fijo y prudente */
+  gap: 30px;
   overflow-x: auto;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-  padding: 20px 0;
   scrollbar-width: none;
   align-items: stretch;
-  width: 100%;
+  flex-grow: 1;
+  box-sizing: border-box;
+}
+
+@media (max-width: 400px) {
+  .carousel-container {
+    gap: 20px;
+  }
 }
 
 .carousel-container > div {
   flex-shrink: 0;
-  scroll-snap-align: start;
+  scroll-snap-align: center; /* Volvemos al centrado que el usuario parece preferir para los otros */
 }
-
-/* Eliminamos las media queries de ancho calculado */
 
 .carousel-container::-webkit-scrollbar {
   display: none;
@@ -43,45 +76,14 @@
 /* ESTILOS ESPECÍFICOS PARA LAS FLECHAS DENTRO DE ESTE CARRUSEL */
 /* Usamos las clases de NavigationArrows pero las fijamos a los extremos del padding */
 
-.carousel-main .swiper-button-prev,
-.carousel-main .nav-arrow-prev {
-  left: 15px !important;
-  position: absolute !important;
-}
+@media (max-width: 768px) {
+  .carousel-main {
+    width: 100vw;
+  }
 
-.carousel-main .swiper-button-next,
-.carousel-main .nav-arrow-next {
-  right: 15px !important;
-  position: absolute !important;
-}
-
-/* Si quieres un degradado sutil para que las cards no desaparezcan de golpe: */
-.carousel-main::before,
-.carousel-main::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 80px;
-  z-index: 5;
-  pointer-events: none; /* Permite clicar las flechas que están debajo */
-}
-
-
-/* Actualiza estas líneas en Carousel.css */
-.carousel-main .nav-custom-prev {
-  left: 15px !important;
-  position: absolute !important;
-}
-
-.carousel-main .nav-custom-next {
-  right: 15px !important;
-  position: absolute !important;
-}
-
-/* Y por seguridad, este "kill switch" para las flechas de Swiper originales */
-.swiper-button-prev, .swiper-button-next {
-    display: none !important;
+  .carousel-container {
+    padding: 20px 0;
+  }
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -92,3 +94,45 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* --- ENLACE "VER TODOS" MINIMALISTA --- */
+.view-more-text {
+  color: var(--text-h);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 20px;
+  position: relative;
+  opacity: 0.6;
+}
+
+.view-more-text::after {
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  left: 20px;
+  width: 0;
+  height: 1px;
+  background-color: var(--text-h);
+  transition: width 0.3s ease;
+}
+
+.view-more-text:hover {
+  opacity: 1;
+  letter-spacing: 3px;
+}
+
+.view-more-text:hover::after {
+  width: calc(100% - 40px);
+}
+
+@media (max-width: 400px) {
+  .view-more-text {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+}
+

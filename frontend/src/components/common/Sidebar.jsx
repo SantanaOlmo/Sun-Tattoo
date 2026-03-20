@@ -41,6 +41,7 @@ export default function Sidebar() {
         <span className="trigger-icon">
            <img src={budgetIcon} alt="Icono Presupuesto" />
         </span>
+        <span className="trigger-text">Pide presupuesto</span>
       </button>
 
       {/* Overlay con Blur */}

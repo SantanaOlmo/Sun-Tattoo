@@ -10,6 +10,7 @@ import './styles/Home.css';
 import budgetIcon from '../../assets/icons/budget.svg'; 
 import News from '../../components/common/News';
 import SectionTitle from '../../components/common/SectionTitle';
+import StatsTrustSection from '../../components/common/StatsTrustSection';
 
 // --- COMPONENTES CON LAZY LOADING (Rompen la cadena crítica de carga) ---
 const Sidebar = lazy(() => import('../../components/common/Sidebar'));
@@ -31,8 +32,10 @@ export default function Home() {
 
       {/* 3. Carrusel de Trabajos: Visible rápido tras el scroll */}
       <section className="home-section">
-        <SectionTitle title="Trabajos Recientes" />
-        <Carousel>
+        <SectionTitle 
+          title="Trabajos Recientes" 
+        />
+        <Carousel viewAllLink="/galeria">
         <Card 
           image="https://res.cloudinary.com/dvkwtib0o/image/upload/v1773788058/2023-12-15_ey8w2k.webp" 
           title="León Realista" 
@@ -61,10 +64,14 @@ export default function Home() {
       </Carousel>
       </section>
       
-      {/* 4. Carrusel de Estilos (Lazy): Evita Forced Reflow al cargar Swiper */}
+      {/* 4. Estadísticas de Confianza (Sustituye a Carrusel de Estilos) */}
+      <StatsTrustSection />
+      
+      {/* 
       <Suspense fallback={<div className="h-[650px] bg-black/20" />}>
         <CarouselTattooStyles />
       </Suspense>
+      */}
 
       {/* 5. Carrusel de Artistas */}
       <section className="home-section">

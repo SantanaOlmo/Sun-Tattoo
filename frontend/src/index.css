@@ -64,7 +64,7 @@ body {
 html.dark {
   --text: #9ca3af;     /* Gris suave */
   --text-h: #f3f4f6;   /* Blanco roto para títulos */
-  --bg: #16171d;       /* Gris casi negro, evita smearing en OLED */
+  --bg: #000000;       /* Negro absoluto */
   --border: #2e303a;
   --code-bg: #1f2028;
   --accent: #c084fc;
@@ -79,7 +79,7 @@ html.dark {
   html:not(.light) {
     --text: #9ca3af;
     --text-h: #f3f4f6;
-    --bg: #16171d;
+    --bg: #000000;
     --border: #2e303a;
     --code-bg: #1f2028;
     --accent: #c084fc;

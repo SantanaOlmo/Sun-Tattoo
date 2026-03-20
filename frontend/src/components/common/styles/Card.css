@@ -81,6 +81,12 @@
   }
 }
 
+@media (max-width: 400px) {
+  .custom-card {
+    width: 190px; /* Tamaño optimizado: un poco más de la mitad de los 280px originales */
+  }
+}
+
 .custom-card:hover {
   transform: translateY(-8px);
 }

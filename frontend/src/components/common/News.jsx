@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import arrowLeft from '../../assets/icons/chevron-chevron-left-left-svgrepo-com.svg';
 import arrowRight from '../../assets/icons/chevron-chevron-right-right-svgrepo-com.svg';
-import SectionTitle from './SectionTitle';
 
 const newsData = [
   {
@@ -77,6 +76,18 @@ const News = () => {
   const prev = () => setCurrent(i => Math.max(0, i - 1));
   const next = () => setCurrent(i => Math.min(newsData.length - 1, i + 1));
 
+  // Cálculo corregido: Cada slot es 100% de la ventana + el gap (24px para gap-6)
+  // En móviles esto garantiza que la card 2 caiga exactamente donde estaba la card 1.
+  const getTransform = () => {
+    if (window.innerWidth < 640) {
+      return `translateX(calc(-${current} * (100% + 24px)))`;
+    } else if (window.innerWidth < 1024) {
+      return `translateX(calc(-${current} * (50% + 12px)))`;
+    } else {
+      return `translateX(calc(-${current} * (33.33% + 16px)))`;
+    }
+  };
+
   return (
     <div 
       ref={containerRef}
@@ -85,9 +96,7 @@ const News = () => {
       }`}
       style={{ width: '95%', maxWidth: '1200px', margin: '0 auto' }}
     >
-      {/* Contenedor Carrusel */}
       <div className="relative group/nav">
-        {/* Flecha Izquierda */}
         <button 
           onClick={prev} 
           style={{...btnStyle, opacity: current === 0 ? 0 : 1, pointerEvents: current === 0 ? 'none' : 'auto'}} 
@@ -97,18 +106,17 @@ const News = () => {
           <img src={arrowLeft} alt="Prev" style={{ width: '1.5rem', height: '1.5rem', filter: 'brightness(0) invert(1)' }} />
         </button>
 
-        {/* Ventana de visión */}
         <div className="overflow-hidden cursor-grab active:cursor-grabbing">
           <div 
             className="flex transition-transform duration-500 ease-out gap-6"
             style={{ 
-              transform: `translateX(calc(-${current * 100}% / 1))` // Default mobile logic
+              transform: getTransform()
             }}
             id="news-slider"
           >
             {newsData.map((article) => (
               <div key={article.id} className="news-card-wrapper shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.33%-16px)]">
-                <a href={article.href} className="group block relative">
+                <div className="group block relative">
                   <figure className="overflow-hidden rounded-xl relative mb-4 aspect-video">
                     <img
                       src={article.image}
@@ -117,7 +125,7 @@ const News = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
                     <div className="absolute inset-x-0 bottom-0" style={{ paddingLeft: '1.5rem', paddingBottom: '1.5rem', paddingRight: '1rem' }}>
-                      <h3 className="text-xl text-left font-black text-white! leading-tight tracking-tight group-hover:translate-x-1 transition-transform duration-300 line-clamp-2">
+                      <h3 className="text-xl text-left font-black text-white leading-tight tracking-tight group-hover:translate-x-1 transition-transform duration-300 line-clamp-2">
                         {article.title}
                       </h3>
                     </div>
@@ -134,13 +142,12 @@ const News = () => {
                   <p className="line-clamp-2 text-sm text-[var(--text)] text-left leading-relaxed transition-colors duration-300">
                     {article.excerpt}
                   </p>
-                </a>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Flecha Derecha */}
         <button 
           onClick={next} 
           style={{...btnStyle, opacity: current >= newsData.length - 1 ? 0 : 1, pointerEvents: current >= newsData.length - 1 ? 'none' : 'auto'}} 
@@ -150,20 +157,6 @@ const News = () => {
           <img src={arrowRight} alt="Next" style={{ width: '1.5rem', height: '1.5rem', filter: 'brightness(0) invert(1)' }} />
         </button>
       </div>
-
-      {/* Estilos inline para el movimiento responsivo */}
-      <style>{`
-        @media (min-width: 640px) {
-          #news-slider {
-            transform: translateX(calc(-${current * 50}%)) !important;
-          }
-        }
-        @media (min-width: 1024px) {
-          #news-slider {
-            transform: translateX(calc(-${current * 33.33}%)) !important;
-          }
-        }
-      `}</style>
     </div>
   );
 };

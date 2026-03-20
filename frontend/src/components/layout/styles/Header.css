@@ -181,3 +181,11 @@
     padding-bottom: 10px;
   }
 }
+
+/* --- OPTIMIZACIÓN DISPOSITIVOS PRO MAX (>430px) --- */
+@media (min-width: 430px) and (max-width: 1024px) {
+  .nav-list a {
+    font-size: 1.8rem !important;
+    letter-spacing: 5px !important;
+  }
+}

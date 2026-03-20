@@ -2,7 +2,7 @@ import React from 'react';
 import arrowLeft from '../../assets/icons/chevron-chevron-left-left-svgrepo-com.svg';
 import arrowRight from '../../assets/icons/chevron-chevron-right-right-svgrepo-com.svg';
 
-export default function NavigationArrows({ prevClass, nextClass, className = "" }) {
+export default function NavigationArrows({ onPrev, onNext, prevClass, nextClass, className = "" }) {
   const btnStyle = `
     z-50 flex items-center justify-center 
     transition-all duration-300 cursor-pointer 
@@ -15,11 +15,17 @@ export default function NavigationArrows({ prevClass, nextClass, className = "" 
 
   return (
     <>
-      <div className={`${prevClass} left-6! ${btnStyle} ${className}`}>
+      <div 
+        className={`${prevClass} left-6! ${btnStyle} ${className}`}
+        onClick={onPrev}
+      >
         <img src={arrowLeft} alt="Prev" className={iconStyle} style={iconFilter} />
       </div>
 
-      <div className={`${nextClass} right-6! ${btnStyle} ${className}`}>
+      <div 
+        className={`${nextClass} right-6! ${btnStyle} ${className}`}
+        onClick={onNext}
+      >
         <img src={arrowRight} alt="Next" className={iconStyle} style={iconFilter} />
       </div>
     </>
