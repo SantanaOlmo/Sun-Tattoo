@@ -12,6 +12,7 @@
     rgba(0, 0, 0, 0) 100%
   );
   transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
 }
 
 .custom-header.contact-open {
@@ -26,6 +27,8 @@
   margin: 0 auto;
   padding: 0 40px;
   height: 90px;
+  position: relative;
+  z-index: 10; /* Atop the contact panel */
 }
 
 /* --- LOGO (75% más pequeño) --- */
@@ -40,6 +43,7 @@
   height: 35px; /* Tamaño reducido y elegante */
   width: auto;
   filter: brightness(0) invert(1);
+  cursor: pointer;
 }
 
 /* --- NAVEGACIÓN CENTRAL --- */
@@ -65,11 +69,12 @@
   font-size: 0.85rem;
   letter-spacing: 2px;
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 
 .nav-list a:hover,
 .nav-list a.active {
-  color: #ff0000;
+  color: var(--accent-red);
 }
 
 /* --- SECCIÓN ACCIÓN / MENÚ BURGUER --- */

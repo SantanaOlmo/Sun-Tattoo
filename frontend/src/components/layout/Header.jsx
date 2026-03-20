@@ -35,7 +35,7 @@ export default function Header() {
   }, [isContactOpen]);
 
   return (
-    <header className={`custom-header ${isContactOpen ? 'contact-open' : ''}`}>
+    <header className={`custom-header select-none ${isContactOpen ? 'contact-open' : ''}`}>
       <div className="header-container">
         
         {/* Logo a la izquierda - Usando la misma importación que el Footer */}

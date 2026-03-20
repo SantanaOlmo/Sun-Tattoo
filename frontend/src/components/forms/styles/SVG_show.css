@@ -18,13 +18,13 @@
 .cls-1:hover:not(.path-selected),
 .cls-1:hover:not(.path-selected) path {
     fill: #cce5ff !important;
-    stroke: #0084ff !important;
+    stroke: var(--accent-blue) !important;
 }
 
 /* 3. SELECCIONADO */
 .cls-1.path-selected,
 .cls-1.path-selected path {
-    fill: #0084ff !important;
-    stroke: #0056b3 !important;
+    fill: var(--accent-blue) !important;
+    stroke: var(--accent-blue-dark) !important;
     stroke-width: 1px;
 }

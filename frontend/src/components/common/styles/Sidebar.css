@@ -3,8 +3,8 @@
   right: 30px;
   bottom: 30px;
   z-index: 1005;
-  background-color: #000000;
-  border: none;
+  z-index: 1005;
+  background-color: var(--sidebar-trigger-bg);
   width: 65px;
   height: 65px;
   border-radius: 35px; /* Empezamos con forma circular aproximada */
@@ -36,12 +36,14 @@ html.mobile-menu-open .sidebar-trigger {
 .trigger-icon img {
   width: 28px;
   height: 28px;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1) !important;
   transition: transform 0.4s ease;
 }
 
 .trigger-text {
-  color: #ffffff;
+  color: white;
+  user-select: none;
+  cursor: pointer;
   font-weight: 600;
   font-size: 1rem;
   margin: 0; /* Sin margen por defecto */
@@ -56,7 +58,9 @@ html.mobile-menu-open .sidebar-trigger {
 /* --- HOVER EXPANSIVO --- */
 .sidebar-trigger:hover {
   width: 240px; /* Se expande a píldora */
-  background-color: #0084ff;
+  width: 240px; /* Se expande a píldora */
+  background-color: var(--sidebar-trigger-bg); /* Mantenemos el fondo o lo cambiamos si el usuario quiere */
+  filter: brightness(1.2); /* Sutil cambio en hover */
 }
 
 .sidebar-trigger:hover .trigger-text {
@@ -78,8 +82,8 @@ html.mobile-menu-open .sidebar-trigger {
   width: 100%;       /* Ocupa todo el ancho como pedías */
   height: 100vh;
   right: -100%;      /* Escondido totalmente a la derecha */
-  background-color: #000000;
-  color: white;
+  background-color: var(--bg);
+  color: var(--text);
   z-index: 1002;
   transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
@@ -97,7 +101,7 @@ html.mobile-menu-open .sidebar-trigger {
   justify-content: space-between; /* Título izquierda, Cruz derecha */
   align-items: center;
   padding: 20px 60px; /* Un poco más de aire en los laterales */
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid var(--border);
   min-height: 90px;
   box-sizing: border-box;
 }
@@ -111,24 +115,21 @@ html.mobile-menu-open .sidebar-trigger {
 .header-icon {
   width: 35px;
   height: 35px;
-  filter: brightness(0) invert(1);
+  filter: var(--icon-filter);
 }
 
 .sidebar-header-title {
-  color: #ffffff;
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  font-weight: 800;
-  margin: 0;
-  line-height: 1;
-  letter-spacing: 1px;
+  color: var(--text-h);
+  user-select: none;
+  cursor: default;
 }
 
 .close-btn {
   background: none;
   border: none;
-  color: white;
+  color: var(--text-h);
   font-size: 3rem;
+  user-select: none;
   line-height: 1;
   cursor: pointer;
   transition: transform 0.3s, color 0.3s;
@@ -136,7 +137,7 @@ html.mobile-menu-open .sidebar-trigger {
 }
 
 .close-btn:hover {
-  color: #ff0000; /* Color de acento al cerrar */
+  color: var(--accent-red); /* Color de acento al cerrar */
   transform: rotate(90deg);
 }
 
@@ -167,7 +168,7 @@ html.mobile-menu-open .sidebar-trigger {
 }
 
 .sidebar-content::-webkit-scrollbar-thumb {
-  background: #333; /* Un gris oscuro que no destaque mucho sobre el negro */
+  background: var(--border); /* Un gris que se adapte al tema */
   border-radius: 10px;
 }
 
@@ -182,7 +183,7 @@ html.mobile-menu-open .sidebar-trigger {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.85); /* Oscuro profundo */
+  background: rgba(0, 0, 0, 0.4); /* Overlay más suave para light mode, se oscurece en dark */
   backdrop-filter: blur(6px);
   z-index: 1000;
 }

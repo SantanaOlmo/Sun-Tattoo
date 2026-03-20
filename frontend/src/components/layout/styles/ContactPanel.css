@@ -1,21 +1,27 @@
 .contact-panel {
   position: fixed;
-  top: 90px;
+  top: 0; /* Empieza desde arriba para que el slide sea natural */
   left: 0;
   width: 100%;
-  height: 45vh; /* Fixed height requested */
-  background: #0a0b0e; /* Solid background for header sync */
-  backdrop-filter: blur(20px);
-  z-index: 999;
+  height: 45vh;
+  background: #0a0b0e;
+  z-index: 1; /* Por debajo del contenido del header */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-  animation: slideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden; /* No scroll requested */
+  
+  /* Transición suave en lugar de animación */
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+  pointer-events: none;
+  overflow: hidden;
+  padding-top: 90px; /* Compensa la altura del header para que el contenido no quede tapado */
 }
 
-@keyframes slideDown {
-  from { transform: translateY(-100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+.contact-panel.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .contact-panel-container {
@@ -58,16 +64,7 @@
 .contact-info-section {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem; /* More compact */
-}
-
-.panel-title {
-  color: white;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  margin-bottom: 2.5rem;
+  gap: 0.75rem;
 }
 
 .contact-item {
@@ -92,7 +89,7 @@
 }
 
 .contact-value:hover {
-  color: #ff0000;
+  color: var(--accent-red);
 }
 
 .contact-map-section {
@@ -115,10 +112,10 @@
 
 @media (max-width: 1024px) {
   .contact-panel {
-    top: 70px;
-    height: auto; /* Auto height on mobile to fit content */
-    max-height: 80vh;
+    height: auto;
+    max-height: 90vh;
     overflow-y: auto;
+    padding-top: 70px; /* Altura header móvil */
   }
   
   .contact-grid {
@@ -127,6 +124,12 @@
   }
   
   .contact-panel-container {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1.5rem;
+  }
+  
+  .close-panel {
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
   }
 }

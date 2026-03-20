@@ -125,7 +125,10 @@ const News = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
                     <div className="absolute inset-x-0 bottom-0" style={{ paddingLeft: '1.5rem', paddingBottom: '1.5rem', paddingRight: '1rem' }}>
-                      <h3 className="text-xl text-left font-black text-white leading-tight tracking-tight group-hover:translate-x-1 transition-transform duration-300 line-clamp-2">
+                      <h3 
+                        className="text-xl text-left font-black text-white leading-tight tracking-tight group-hover:translate-x-1 transition-transform duration-300 line-clamp-2"
+                        style={{ color: '#fff' }}
+                      >
                         {article.title}
                       </h3>
                     </div>

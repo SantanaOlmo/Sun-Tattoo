@@ -1,0 +1,38 @@
+/* Dark Mode Variables */
+html.dark {
+  --text: #d1d5db;     /* Gris claro para alto contraste */
+  --text-h: #f3f4f6;   /* Blanco roto para títulos */
+  --bg: #000000;       /* Negro absoluto */
+  --border: #2e303a;
+  --code-bg: #1f2028;
+  --accent: #c084fc;
+  --accent-bg: rgba(192, 132, 252, 0.15);
+  --accent-border: rgba(192, 132, 252, 0.5);
+  --social-bg: rgba(47, 48, 58, 0.5);
+  --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  --icon-filter: brightness(0) invert(1); /* SVGs en blanco para el fondo oscuro */
+  --accent-blue: #0084ff;
+  --accent-blue-dark: #0056b3;
+  --accent-red: #ff0000;
+  --sidebar-trigger-bg: #ff0000;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light) {
+    --text: #d1d5db;
+    --text-h: #f3f4f6;
+    --bg: #000000;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+    --icon-filter: brightness(0) invert(1);
+    --accent-blue: #0084ff;
+    --accent-blue-dark: #0056b3;
+    --accent-red: #ff0000;
+    --sidebar-trigger-bg: #ffffff;
+  }
+}

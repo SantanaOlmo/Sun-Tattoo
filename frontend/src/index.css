@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "./styles/light-theme.css";
+@import "./styles/dark-theme.css";
 
 /* --- OCULTAR SCROLLBAR EN HOME PERO PERMITIR SCROLL --- */
 .home-page::-webkit-scrollbar,
@@ -16,28 +18,9 @@ body {
   -ms-overflow-style: none;
 }
 
-/* Base / Light Mode */
+
+
 :root {
-  --text: #4b5563;       /* Gris muy oscuro pero suave para leer */
-  --text-h: #111827;     /* Casi negro para títulos */
-  --bg: #f9fafb;         /* Blanco roto para no quemar la vista */
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-  --icon-filter: brightness(0); /* SVGs en color negro para fondo claro */
-
-  /* AQUÍ DEFINIMOS ROBOTO COMO BASE */
-  --sans: 'Roboto', system-ui, -apple-system, sans-serif;
-  --heading: 'Roboto', system-ui, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  /* FUENTE ESPECÍFICA PARA TATTOOS (Anton SC) */
-  --font-tattoo: 'Anton SC', sans-serif;
-
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
@@ -58,35 +41,7 @@ body {
   Se aplica si el HTML tiene la clase .dark O si el sistema lo prefiere 
   y el HTML NO tiene la clase .light 
 */
-html.dark {
-  --text: #d1d5db;     /* Gris claro para alto contraste */
-  --text-h: #f3f4f6;   /* Blanco roto para títulos */
-  --bg: #000000;       /* Negro absoluto */
-  --border: #2e303a;
-  --code-bg: #1f2028;
-  --accent: #c084fc;
-  --accent-bg: rgba(192, 132, 252, 0.15);
-  --accent-border: rgba(192, 132, 252, 0.5);
-  --social-bg: rgba(47, 48, 58, 0.5);
-  --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  --icon-filter: brightness(0) invert(1); /* SVGs en blanco para el fondo oscuro */
-}
 
-@media (prefers-color-scheme: dark) {
-  html:not(.light) {
-    --text: #d1d5db;
-    --text-h: #f3f4f6;
-    --bg: #000000;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-    --icon-filter: brightness(0) invert(1);
-  }
-}
 
 html.dark #social .button-icon {
   filter: invert(1) brightness(2);

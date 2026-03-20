@@ -26,7 +26,7 @@ export default function SectionTitle({
               aria-hidden="true" 
             />
           )}
-          <h2 className="text-[var(--text-h)] md:text-4xl text-xl font-bold uppercase tracking-tight md:tracking-tighter m-0 transition-colors duration-300 whitespace-nowrap overflow-hidden text-ellipsis">
+          <h2 className="text-[var(--text-h)] md:text-4xl text-xl font-bold uppercase tracking-tight md:tracking-tighter m-0 transition-colors duration-300 whitespace-nowrap overflow-hidden text-ellipsis select-none cursor-default">
             {title}
           </h2>
         </div>

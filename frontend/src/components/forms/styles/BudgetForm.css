@@ -79,7 +79,7 @@
 
 .form-group input[type="text"]:focus,
 .form-group textarea:focus {
-  border-color: #0084ff;
+  border-color: var(--accent-blue);
   outline: none;
 }
 
@@ -91,13 +91,13 @@
 /* --- SLIDER DE PRECIO --- */
 .price-slider {
   width: 100%;
-  accent-color: #0084ff;
+  accent-color: var(--accent-blue);
   margin: 10px 0;
   cursor: pointer;
 }
 
 .price-value {
-  color: #0084ff;
+  color: var(--accent-blue);
   font-weight: bold;
 }
 
@@ -126,7 +126,7 @@
 }
 
 .upload-box:hover {
-  border-color: #0084ff;
+  border-color: var(--accent-blue);
 }
 
 .plus-icon {

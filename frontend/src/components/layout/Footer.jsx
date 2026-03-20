@@ -57,7 +57,7 @@ export default function Footer() {
             </div>
 
             {/* COLUMNA 3: REDES SOCIALES */}
-            <div className={`footer-column transition-all duration-1000 ease-out delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
+            <div className={`footer-column footer-social-column transition-all duration-1000 ease-out delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
               <div className="footer-social-container mb-6">
                 <SocialBar />
               </div>

@@ -40,7 +40,7 @@ export default function Carousel({ children, title, isArtist = false, viewAllLin
         {/* Lado Izquierdo: Div con flecha centrada */}
         <div className="carousel-side-nav shrink-0">
           <button onClick={() => handleScroll('left')} style={btnStyle} aria-label="Anterior">
-            <img src={arrowLeft} alt="Anterior" className="carousel-nav-icon w-8 h-8 transition-opacity" />
+            <img src={arrowLeft} alt="Anterior" className="carousel-nav-icon transition-opacity" />
           </button>
         </div>
 
@@ -62,10 +62,15 @@ export default function Carousel({ children, title, isArtist = false, viewAllLin
           ))}
 
           {viewAllLink && (
-            <div className="shrink-0 flex items-center h-full px-10">
-              <a href={viewAllLink} className="view-more-text">
-                Ver más
-              </a>
+            <div className="view-more-card-wrapper">
+              <div className="view-more-card">
+                <div className="view-more-image-placeholder">
+                  <a href={viewAllLink} className="view-more-text">
+                    Ver más
+                  </a>
+                </div>
+                <div className="view-more-info-placeholder"></div>
+              </div>
             </div>
           )}
         </div>
@@ -73,7 +78,7 @@ export default function Carousel({ children, title, isArtist = false, viewAllLin
         {/* Lado Derecho: Div con flecha centrada */}
         <div className="carousel-side-nav shrink-0">
           <button onClick={() => handleScroll('right')} style={btnStyle} aria-label="Siguiente">
-            <img src={arrowRight} alt="Siguiente" className="carousel-nav-icon w-8 h-8 transition-opacity" />
+            <img src={arrowRight} alt="Siguiente" className="carousel-nav-icon transition-opacity" />
           </button>
         </div>
       </div>

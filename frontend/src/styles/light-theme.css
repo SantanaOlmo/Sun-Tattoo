@@ -1,0 +1,23 @@
+:root {
+  --text: #4b5563;       /* Gris muy oscuro pero suave para leer */
+  --text-h: #111827;     /* Casi negro para títulos */
+  --bg: #f0e7da;         /* Blanco roto para no quemar la vista */
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --icon-filter: brightness(0); /* SVGs en color negro para fondo claro */
+  --accent-blue: #0084ff;
+  --accent-blue-dark: #2164e9;
+  --accent-red: #ff0000;
+  --sidebar-trigger-bg: #000000;
+
+  /* FUENTES */
+  --sans: 'Roboto', system-ui, -apple-system, sans-serif;
+  --heading: 'Roboto', system-ui, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+  --font-tattoo: 'Anton SC', sans-serif;
+}

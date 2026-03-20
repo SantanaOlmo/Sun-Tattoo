@@ -31,7 +31,7 @@ const handlePointerClick = (e) => {
 };
 
   return (
-    <div className="relative svg-body-container w-full h-full bg-[var(--bg-secondary)] overflow-hidden rounded-l-[19px]">
+    <div className="relative svg-body-container w-full h-full bg-[var(--bg-secondary)] overflow-hidden rounded-l-[19px] select-none">
       
       {/* Botones de Zoom estilo Canva (Pill container) */}
       <div className="absolute top-4 right-4 z-20 flex bg-[var(--bg)] border border-[var(--border)] rounded-full shadow-sm overflow-hidden text-[var(--text-h)]">
@@ -39,7 +39,7 @@ const handlePointerClick = (e) => {
           type="button" 
           onClick={handleZoomIn} 
           disabled={zoom >= 3}
-          className="w-10 h-10 flex items-center justify-center font-bold text-xl hover:bg-[var(--bg-secondary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          className="w-10 h-10 flex items-center justify-center font-bold text-xl hover:bg-[var(--bg-secondary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed select-none cursor-pointer"
           aria-label="Acercar"
         >
           +
@@ -49,7 +49,7 @@ const handlePointerClick = (e) => {
           type="button" 
           onClick={handleZoomOut} 
           disabled={zoom <= 1}
-          className="w-10 h-10 flex items-center justify-center font-bold text-3xl leading-none pb-1 hover:bg-[var(--bg-secondary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          className="w-10 h-10 flex items-center justify-center font-bold text-3xl leading-none pb-1 hover:bg-[var(--bg-secondary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed select-none cursor-pointer"
           aria-label="Alejar"
         >
           -

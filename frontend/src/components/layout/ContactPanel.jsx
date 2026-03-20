@@ -3,10 +3,11 @@ import './styles/ContactPanel.css';
 import SocialBar from './SocialBar';
 
 export default function ContactPanel({ isOpen, onClose }) {
-  if (!isOpen) return null;
+  // Eliminamos el early return para permitir animaciones de salida
+  // El control de visibilidad se delega al CSS mediante la clase 'is-open'
 
   return (
-    <div className={`contact-panel ${isOpen ? 'is-open' : ''}`}>
+    <div className={`contact-panel ${isOpen ? 'is-open' : ''}`} aria-hidden={!isOpen}>
       <div className="contact-panel-container">
         <button className="close-panel" onClick={onClose} aria-label="Cerrar contacto">×</button>
         

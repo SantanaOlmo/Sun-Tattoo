@@ -227,6 +227,9 @@
     align-items: center;
     gap: 50px;
   }
+  .footer-social-column {
+    order: -1; /* Primero en la lista vertical */
+  }
   .footer-column { align-items: center; }
   .footer-column h3 { text-align: center; }
   .footer-column ul { align-items: center; }

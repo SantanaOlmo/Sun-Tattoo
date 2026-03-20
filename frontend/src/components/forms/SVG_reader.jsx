@@ -15,7 +15,7 @@ const SVG_reader = ({ onPartsChange }) => {
 
   const getPartId = (e) => {
     const target = e.target.closest('[id]');
-    if (!target || target.id === 'Capa_1') return null;
+    if (!target || target.id === 'Capa_1' || target.id === 'root') return null;
 
     let id = target.id;
 
@@ -82,7 +82,7 @@ const SVG_reader = ({ onPartsChange }) => {
           position: 'fixed', 
           top: mousePos.y, 
           left: mousePos.x,
-          backgroundColor: '#0084ff',
+          backgroundColor: 'var(--accent-blue)',
           color: '#fff', 
           padding: '4px 10px',
           borderRadius: '4px', 
